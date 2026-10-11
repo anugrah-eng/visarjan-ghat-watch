@@ -6,7 +6,7 @@ const fs = require("fs");
 const os = require("os");
 
 const CHROME = process.env.CHROME || "C:/Program Files/Google/Chrome/Application/chrome.exe";
-const BASE = process.env.BASE || "http://localhost:8765/site/index.html";
+const BASE = process.env.BASE || "http://localhost:8765/site/app.html";
 const OUT = path.join(os.tmpdir(), "vgw-shots");
 fs.mkdirSync(OUT, { recursive: true });
 const ROOT = path.join(__dirname, "..");
@@ -24,8 +24,8 @@ const check = (ok, msg) => { console.log(`${ok ? "PASS" : "FAIL"} ${msg}`); if (
   await page.goto(`${BASE}?until=2024`, { waitUntil: "networkidle2" });
   await page.evaluate(() => Store.clear());
   await page.reload({ waitUntil: "networkidle2" });
-  const statusesBefore = await page.$$eval(".ghat-card", (els) => els.map((e) => e.querySelector(".name").textContent + ":" + e.querySelector(".status").textContent));
-  check(statusesBefore.length === 7, `7 ghats listed in the 2023-24 view (${statusesBefore.length})`);
+  const rowsBefore = await page.$$eval("#sites-table tr[data-site]", (els) => els.length);
+  check(rowsBefore === 7, `7 ghats listed in the 2023-24 view (${rowsBefore})`);
 
   // Upload the 2025 PDF
   await page.click("#btn-upload");
@@ -51,13 +51,12 @@ const check = (ok, msg) => { console.log(`${ok ? "PASS" : "FAIL"} ${msg}`); if (
   // Persisted after reload
   await page.reload({ waitUntil: "networkidle2" });
   await sleep(500);
-  const note = await page.$eval("#data-note", (e) => e.textContent);
-  check(/uploaded report/.test(note), "uploaded report persists after reload");
+    check(await page.evaluate(() => App.state.uploads.length === 1), "uploaded report persists after reload");
 
   // Source link of an uploaded value points at the stored PDF
-  await page.click(".ghat-card");
+  await page.goto(`${BASE}?until=2024#ghat=Khatlapura%20ghat`, { waitUntil: "networkidle2" });
   await sleep(800);
-  const href = await page.$eval("#view-detail td.breach a, #view-detail td.ok a", (a) => a.getAttribute("href"));
+  const href = await page.$eval("#view-ghat td.breach a, #view-ghat td.ok a", (a) => a.getAttribute("href"));
   check(/^blob:.*#page=\d+$/.test(href), `uploaded values link to the stored PDF page (${href.slice(0, 40)}…)`);
   await page.screenshot({ path: path.join(OUT, "detail-popup.png") });
 

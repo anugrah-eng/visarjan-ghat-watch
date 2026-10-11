@@ -4,88 +4,76 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Visarjan Ghat Watch · Bhopal</title>
-  <link rel="stylesheet" href="vendor/maplibre/maplibre-gl.css">
+  <meta name="description" content="Water tests at Bhopal's 7 immersion ghats, checked against CPCB bathing limits, with alerts and actions before Durga visarjan.">
+  <script src="js/theme.js"></script>
+  <link rel="preload" href="fonts/mukta-latin-700.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="fonts/fonts.css">
   <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/print.css" media="print">
+  <link rel="stylesheet" href="css/landing.css">
 </head>
-<body>
-  <header class="topbar">
-    <div class="brand">
-      <h1>Visarjan Ghat Watch</h1>
-      <span class="sub">Bhopal · MPPCB water tests 2023–25 checked against CPCB bathing limits (Class B)</span>
-    </div>
-    <div class="countdown" id="countdown"></div>
-    <div class="top-actions">
-      <button id="btn-upload" class="btn">⬆ Upload report</button>
-      <button id="btn-brief" class="btn btn-primary">Officer brief · EN / हिंदी</button>
+<body class="landing">
+  <header class="l-top">
+    <a class="l-brand" href="index.html">
+      <svg width="24" height="28" viewBox="0 0 30 34" aria-hidden="true"><path d="M15 1C15 1 3 15 3 22a12 12 0 0 0 24 0C27 15 15 1 15 1Z" fill="#5aa6e8"/><path d="M8 24h14M10 28h10" stroke="#0b1d2b" stroke-width="2" stroke-linecap="round"/></svg>
+      <span data-t="appName"></span>
+    </a>
+    <div class="l-controls">
+      <div class="seg" role="group" aria-label="Theme">
+        <button data-theme-btn="light" aria-label="Light theme">☀</button>
+        <button data-theme-btn="dark" aria-label="Dark theme">☾</button>
+      </div>
+      <div class="seg" role="group" aria-label="Language / भाषा">
+        <button data-lang-btn="en" lang="en">EN</button>
+        <button data-lang-btn="hi" lang="hi">हिंदी</button>
+      </div>
     </div>
   </header>
 
-  <main class="layout">
-    <aside class="sidebar" id="sidebar">
-      <section id="view-list">
-        <div class="side-head">
-          <h2>Ghats ranked by risk</h2>
-          <p class="muted" id="data-note"></p>
+  <main>
+    <section class="hero" aria-labelledby="hero-h">
+      <div id="hero-map" class="hero-map" aria-hidden="true"></div>
+      <div class="hero-scrim"></div>
+      <div class="hero-inner">
+        <div class="hero-copy">
+          <p class="hero-date" id="hero-date"></p>
+          <h1 id="hero-h"></h1>
+          <p class="hero-lede" id="hero-lede"></p>
+          <div class="hero-cta">
+            <a class="btn btn-primary btn-lg" href="app.html#overview" data-t="openDashboard"></a>
+            <a class="btn btn-ghost" href="app.html#alerts" id="cta-alerts"></a>
+          </div>
         </div>
-        <ol class="ghat-list" id="ghat-list"></ol>
-        <div class="side-buttons">
-          <button class="btn" id="btn-report">CPCB report: pH, DO, BOD</button>
-          <button class="btn" id="btn-export-summary">⬇ Export ranking CSV</button>
-          <button class="btn" id="btn-export-all">⬇ Export all readings CSV</button>
+        <aside class="gauge" aria-labelledby="gauge-h">
+          <h2 id="gauge-h"></h2>
+          <ol id="gauge-list"></ol>
+          <p class="gauge-note" id="gauge-note"></p>
+          <button class="motion-btn" id="motion-btn" hidden></button>
+        </aside>
+      </div>
+    </section>
+
+    <section class="l-band">
+      <div class="l-band-inner">
+        <div>
+          <h2 id="band-h"></h2>
+          <p id="band-p"></p>
         </div>
-        <details class="limits" id="limits-box" open>
-          <summary>What this data does not tell you</summary>
-          <ul id="limits-list"></ul>
-        </details>
-      </section>
-      <section id="view-detail" hidden></section>
-      <section id="view-report" hidden></section>
-    </aside>
-    <div class="map-wrap">
-      <div id="map" aria-label="Map of Bhopal immersion ghats"></div>
-      <div class="legend" id="legend"></div>
-      <div class="map-notice" id="map-notice" hidden>Map tiles unavailable offline. The list, report and brief still work.</div>
-    </div>
+        <ul class="l-facts" id="band-facts"></ul>
+      </div>
+    </section>
   </main>
 
-  <dialog id="dlg-brief" class="dlg">
-    <div class="dlg-head">
-      <h2>Officer brief</h2>
-      <div class="seg" role="tablist">
-        <button data-lang="en" class="on">English</button>
-        <button data-lang="hi">हिंदी</button>
-        <button data-lang="both">Both</button>
-      </div>
-      <button class="x" data-close>✕</button>
-    </div>
-    <div id="brief-body" class="brief"></div>
-    <div class="dlg-foot">
-      <span class="muted" id="brief-status"></span>
-      <button class="btn" id="btn-copy">Copy for WhatsApp</button>
-      <button class="btn btn-primary" id="btn-print">Print / Save as PDF</button>
-    </div>
-  </dialog>
+  <footer class="l-foot">
+    <p id="foot-p"></p>
+    <p class="small">Satellite: <a href="https://s2maps.eu">Sentinel-2 cloudless 2023</a> by EOX IT Services GmbH (modified Copernicus Sentinel data), CC BY-NC-SA 4.0 ·
+      Terrain: <a href="https://github.com/tilezen/joerd/blob/master/docs/attribution.md">Mapzen / AWS Terrain Tiles</a> ·
+      Data: <a href="https://www.mppcb.mp.gov.in/proc/mon/Ganesh_and_Durga_visarjan_report-2025.pdf">MPPCB visarjan reports</a>, <a href="https://cpcb.gov.in/water-quality-criteria/">CPCB criteria</a> · MIT licence</p>
+  </footer>
 
-  <dialog id="dlg-upload" class="dlg dlg-wide">
-    <div class="dlg-head">
-      <h2>Upload a new MPPCB report</h2>
-      <button class="x" data-close>✕</button>
-    </div>
-    <div id="upload-body"></div>
-  </dialog>
-
-  <div id="toast" class="toast" hidden></div>
-  <div id="print-area" class="print-only"></div>
-
-  <script src="vendor/maplibre/maplibre-gl.js"></script>
   <script src="js/config.js"></script>
-  <script src="data/bundled.js"></script>
-  <script src="js/scoring.js"></script>
-  <script src="js/pdfparse.js"></script>
-  <script src="js/store.js"></script>
-  <script src="js/brief.js"></script>
-  <script src="js/app.js"></script>
-  <script src="js/upload.js"></script>
+  <script src="data/alert-readings.js"></script>
+  <script src="js/i18n.js"></script>
+  <script src="js/alerts.js"></script>
+  <script src="js/landing.js"></script>
 </body>
 </html>

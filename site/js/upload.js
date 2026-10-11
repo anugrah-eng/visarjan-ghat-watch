@@ -160,7 +160,7 @@
   }
 
   async function confirm() {
-    const before = Object.fromEntries(App.state.results.ghats.map((g) => [g.site, g.status]));
+    const before = Object.fromEntries(App.state.alerts.map((a) => [a.site, a.level]));
     const rec = { fileName: job.file.name, kind: job.kind, year: job.year, addedAt: new Date().toISOString(),
       readings: job.mapped.readings, pdf: job.kind === "pdf" ? job.file : null };
     let uploads;
@@ -168,10 +168,10 @@
     catch (e) { uploads = [...App.state.uploads, { ...rec, id: Date.now() }]; App.toast("Could not save in this browser; the update lasts until you close the page."); }
     App.applyData(uploads);
     App.refresh();
-    const changed = App.state.results.ghats.filter((g) => before[g.site] !== g.status);
+    const changed = App.state.alerts.filter((a) => before[a.site] !== a.level);
     const seasons = [...new Set(rec.readings.map((r) => `${r.festival} ${r.year}`))].join(" and ");
     $("dlg-upload").close();
-    App.toast(`${seasons} added from ${rec.fileName}: ${changed.length} ghat${changed.length === 1 ? "" : "s"} changed status${changed.length ? ` (${changed.map((g) => g.site.split(" (")[0]).join(", ")})` : ""}.`);
+    App.toast(`${seasons} added from ${rec.fileName}: ${changed.length} ghat${changed.length === 1 ? "" : "s"} changed alert level${changed.length ? ` (${changed.map((g) => g.site.split(" (")[0]).join(", ")})` : ""}.`);
   }
 
   $("btn-upload").onclick = () => { stepDrop(); $("dlg-upload").showModal(); };

@@ -31,7 +31,7 @@ const WIDTHS = { desktop: [1440, 900], mobile: [390, 844] };
     page.on("pageerror", (e) => errors.push(`${id}: ${e.message}`));
     await page.evaluateOnNewDocument((t, l) => { localStorage.setItem("vgw-theme", t); localStorage.setItem("vgw-lang", l); localStorage.setItem("vgw-motion", "off"); }, theme, lang);
     await page.goto(BASE + url, { waitUntil: "networkidle2", timeout: 60000 });
-    await new Promise((r) => setTimeout(r, 2500));
+    await new Promise((r) => setTimeout(r, name === "landing" ? 6000 : 2500));
     await page.screenshot({ path: path.join(OUT, `${id}.png`), fullPage: name !== "overview" && name !== "landing" });
     await page.close();
   }
