@@ -1,0 +1,22 @@
+{
+  "name": "visarjan-ghat-watch",
+  "version": "1.0.0",
+  "description": "Ranked risk map and bilingual brief for Bhopal idol-immersion ghats, from MPPCB water tests checked against CPCB limits",
+  "scripts": {
+    "test": "node --test site/js/",
+    "e2e": "node tests/e2e.js",
+    "build": "python pipeline/build_data.py",
+    "serve": "python -m http.server 8765"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "maplibre-gl": "^4.7.1",
+    "pdfjs-dist": "^4.10.38"
+  },
+  "devDependencies": {
+    "puppeteer-core": "^23.11.1"
+  },
+  "private": true
+}

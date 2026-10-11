@@ -1,0 +1,7 @@
+/* Print only the officer brief, on one A4 page per language. */
+@page { size: A4; margin: 14mm; }
+body > *:not(#print-area) { display: none !important; }
+#print-area { display: block !important; font-size: 11pt; line-height: 1.45; color: #000; }
+#print-area pre { white-space: pre-wrap; font-family: "Segoe UI", "Nirmala UI", "Noto Sans Devanagari", sans-serif; margin: 0; }
+#print-area .page { page-break-after: always; }
+#print-area .page:last-child { page-break-after: auto; }

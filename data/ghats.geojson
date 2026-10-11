@@ -1,0 +1,19 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {"type": "Feature", "geometry": {"type": "Point", "coordinates": [77.3440, 23.2700]},
+     "properties": {"site": "Bairagarh (Sant Hirdaram) kund", "name_hi": "बैरागढ़ (संत हिरदाराम) कुंड", "water_body": "Upper Lake", "coord_status": "approximate", "note": ""}},
+    {"type": "Feature", "geometry": {"type": "Point", "coordinates": [77.4030, 23.2495]},
+     "properties": {"site": "Khatlapura ghat", "name_hi": "खटलापुरा घाट", "water_body": "Lower Lake", "coord_status": "approximate", "note": ""}},
+    {"type": "Feature", "geometry": {"type": "Point", "coordinates": [77.3530, 23.2240]},
+     "properties": {"site": "Prempura ghat", "name_hi": "प्रेमपुरा घाट", "water_body": "Upper Lake", "coord_status": "approximate", "note": ""}},
+    {"type": "Feature", "geometry": {"type": "Point", "coordinates": [77.3940, 23.2530]},
+     "properties": {"site": "Rani Kamlapati ghat / Kamla Park kund", "name_hi": "रानी कमलापति घाट / कमला पार्क कुंड", "water_body": "Lower Lake", "coord_status": "approximate", "note": "Ganesh tables say 'Kamla Park kund', Durga tables say 'Lower Lake ghat'. May be two places."}},
+    {"type": "Feature", "geometry": {"type": "Point", "coordinates": [77.4640, 23.2930]},
+     "properties": {"site": "Hathaikheda dam / kund", "name_hi": "हथाईखेड़ा डैम / कुंड", "water_body": "Hathaikheda dam", "coord_status": "approximate", "note": ""}},
+    {"type": "Feature", "geometry": {"type": "Point", "coordinates": [77.4150, 23.3040]},
+     "properties": {"site": "Malikhedi kund", "name_hi": "मालीखेड़ी कुंड", "water_body": "Kund", "coord_status": "approximate", "note": ""}},
+    {"type": "Feature", "geometry": {"type": "Point", "coordinates": [77.4180, 23.1995]},
+     "properties": {"site": "Shahpura lake ghat", "name_hi": "शाहपुरा झील घाट", "water_body": "Shahpura Lake", "coord_status": "approximate", "note": ""}}
+  ]
+}
