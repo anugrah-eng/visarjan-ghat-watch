@@ -3,6 +3,49 @@ window.CONFIG = {
   visarjanDate: "2026-10-20",
   festivalAhead: "Durga",
 
+  // Alert engine thresholds. "source" says where each number comes from:
+  //   cpcb-B / cpcb-C = CPCB Primary Water Quality Criteria, class B (bathing) or C/D;
+  //   team = our own escalation tier. CPCB sets no tiers beyond the class limits, so these are a judgement call.
+  alerts: {
+    staleDays: 90, // a ghat whose latest test is older than this shows "Data outdated", never "safe"
+    levels: ["normal", "advisory", "warning", "critical"],
+    rules: {
+      "Dissolved oxygen": [
+        { level: "advisory", op: "<", value: 5, source: "cpcb-B" },
+        { level: "warning", op: "<", value: 4, source: "cpcb-C" },
+        { level: "critical", op: "<", value: 2, source: "team" },
+      ],
+      "BOD": [
+        { level: "advisory", op: ">", value: 3, source: "cpcb-B" },
+        { level: "warning", op: ">", value: 6, source: "team" },
+        { level: "critical", op: ">", value: 12, source: "team" },
+      ],
+      "pH": [
+        { level: "advisory", op: "outside", min: 6.5, max: 8.5, source: "cpcb-B" },
+        { level: "warning", op: "outside", min: 6.0, max: 9.0, source: "cpcb-C" },
+      ],
+      // Not measured in the MPPCB immersion reports. Kept so the engine scores it if a future report has it.
+      "Faecal coliform": [
+        { level: "advisory", op: ">", value: 500, source: "cpcb-B" },
+        { level: "warning", op: ">", value: 2500, source: "cpcb-B" },
+      ],
+    },
+    // Must be tested in a season for the result to count as complete.
+    required: ["Dissolved oxygen", "BOD", "pH"],
+    // No CPCB bathing limit, so never used for alerts (shown with values only).
+    noLimit: ["COD", "Total solids", "Dissolved solids", "Suspended solids", "Turbidity", "Conductivity",
+      "Chromium", "Lead", "Zinc", "Copper"],
+    // The reports print no sampling dates. We use the immersion day ("during"), the day before ("pre")
+    // and a week after ("after"). Dates marked approximate everywhere they are shown.
+    festivalDates: {
+      2023: { Ganesh: "2023-09-28", Durga: "2023-10-24" },
+      2024: { Ganesh: "2024-09-17", Durga: "2024-10-12" },
+      2025: { Ganesh: "2025-09-06", Durga: "2025-10-02" },
+    },
+    fallbackDates: { Ganesh: "09-15", Durga: "10-15" }, // for years not listed above
+    phaseOffsetDays: { pre: -1, during: 0, after: 7 },
+  },
+
   // CPCB Class B: outdoor bathing (organised). Devotees enter the water at ghats.
   limits: {
     "Dissolved oxygen": { type: "min", value: 5, unit: "mg/l" },
