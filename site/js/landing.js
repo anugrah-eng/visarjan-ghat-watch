@@ -20,6 +20,7 @@
 
   function render() {
     document.querySelectorAll("[data-t]").forEach((el) => (el.textContent = T.t(el.dataset.t)));
+    document.querySelectorAll("[data-alt]").forEach((el) => (el.alt = T.t(el.dataset.alt)));
     document.querySelectorAll("[data-lang-btn]").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.langBtn === T.lang)));
     const th = document.documentElement.getAttribute("data-theme");
     document.querySelectorAll("[data-theme-btn]").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.themeBtn === th)));

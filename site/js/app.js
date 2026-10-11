@@ -76,6 +76,7 @@
   // ---------- i18n + theme ----------
   function applyText() {
     document.querySelectorAll("[data-t]").forEach((el) => (el.textContent = T.t(el.dataset.t)));
+    document.querySelectorAll("[data-alt]").forEach((el) => (el.alt = T.t(el.dataset.alt)));
     document.querySelectorAll("[data-lang-btn]").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.langBtn === T.lang)));
     const th = document.documentElement.getAttribute("data-theme");
     document.querySelectorAll("[data-theme-btn]").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.themeBtn === th)));
@@ -174,7 +175,7 @@
         <dt>${esc(T.t("triggered"))}</dt><dd>${a.triggers.length ? `<ul class="triggers" style="margin:0;padding-left:16px">${a.triggers.slice(0, 3).map((t) => `<li>${triggerText(t)}</li>`).join("")}</ul>` : esc(T.t("noTriggers"))}</dd></dl>
       <div class="small muted" style="margin-bottom:4px">${esc(T.t("actions"))}</div>${actionList(a, 3)}
       <p style="margin:12px 0 0;display:flex;gap:8px;flex-wrap:wrap"><a class="btn btn-primary" href="#ghat=${encodeURIComponent(a.site)}">${esc(T.t("viewGhat"))}</a>
-      <button class="btn" id="gp-export">⬇ ${esc(T.t("exportCsv"))}</button></p>`;
+      <button class="btn" id="gp-export">⬇ ${esc(T.t("exportCsv"))}</button><button class="btn" data-report="${esc(a.site)}">${esc(T.t("rsOpen"))}</button></p>`;
     $("gp-export").onclick = () => exportReadings(state.readings.filter((r) => r.site === a.site), `${a.site.split(" ")[0].toLowerCase()}_readings.csv`);
   }
   function renderSitesTable() {

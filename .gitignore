@@ -3,3 +3,6 @@ node_modules/
 *.log
 __pycache__/
 site/data/env.js
+# Local-only working material: video frames, and raw images and OCR extracted from the MPPCB reports
+.reference/
+extracted-images/

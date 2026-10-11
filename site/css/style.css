@@ -1,9 +1,9 @@
 /* Theme tokens. Components use only these variables, so light and dark stay in step. */
 :root, [data-theme="light"] {
-  --bg: #eef3f4; --panel: #ffffff; --panel-2: #f5f8f9; --ink: #13212b; --ink-2: #3d4d57; --muted: #5d6d76;
-  --line: #d6dfe2; --line-2: #e7edef; --accent: #1d4e89; --accent-ink: #ffffff; --accent-soft: #e3edf8;
-  --nav-bg: #10263a; --nav-ink: #dbe6ee; --nav-muted: #93a8b8; --nav-active: #1d4e89;
-  --focus: #1d4e89; --shadow: 0 1px 2px rgba(16, 38, 58, .06), 0 4px 14px rgba(16, 38, 58, .06);
+  --bg: #f2f6fb; --panel: #ffffff; --panel-2: #f5f8fc; --ink: #13212b; --ink-2: #3d4d57; --muted: #5d6d76;
+  --line: #dbe3ee; --line-2: #e9eff6; --accent: #1565d8; --accent-ink: #ffffff; --accent-soft: #e6f0fd;
+  --nav-bg: linear-gradient(180deg, #0b2545 0%, #0f2f57 55%, #123a6b 100%); --nav-ink: #e3ecf6; --nav-muted: #9fb4cc; --nav-active: #1565d8;
+  --focus: #1565d8; --shadow: 0 1px 2px rgba(15, 40, 80, .05), 0 6px 20px rgba(15, 40, 80, .07);
   /* Alert levels: fill (markers, bars), chip text, and text on plain surfaces (AA on --panel). */
   --crit: #b8205a; --crit-on: #ffffff; --crit-text: #9c1a4c; --crit-soft: #fbe7ef;
   --warn: #e0610e; --warn-on: #1a1206; --warn-text: #a8470a; --warn-soft: #fdeee3;
@@ -11,21 +11,21 @@
   --ok: #009a8a; --ok-on: #ffffff; --ok-chip: #00796d; --ok-text: #00695f; --ok-soft: #dff3f0;
   --data: #7c3aed; --data-on: #ffffff; --data-text: #5b21b6; --data-soft: #efe7fd;
   /* Charts */
-  --chart-line: #1d4e89; --chart-grid: #e3e9eb; --chart-tick: #5d6d76; --chart-limit: #9c1a4c; --chart-band: rgba(0, 154, 138, .10);
+  --chart-line: #1565d8; --chart-grid: #e3e9eb; --chart-tick: #5d6d76; --chart-limit: #9c1a4c; --chart-band: rgba(0, 154, 138, .10);
   --map-label-bg: rgba(255, 255, 255, .94); --map-label-ink: #13212b;
   color-scheme: light;
 }
 [data-theme="dark"] {
   --bg: #0b151c; --panel: #12202a; --panel-2: #172833; --ink: #e6eef2; --ink-2: #b9c7ce; --muted: #8fa1aa;
-  --line: #263a46; --line-2: #1d2f3a; --accent: #7fb2ec; --accent-ink: #0b151c; --accent-soft: #1b3550;
-  --nav-bg: #08121a; --nav-ink: #d5e1e9; --nav-muted: #7f94a3; --nav-active: #1f4c7c;
+  --line: #263a46; --line-2: #1d2f3a; --accent: #6aa8ff; --accent-ink: #06121f; --accent-soft: #16304f;
+  --nav-bg: linear-gradient(180deg, #050d17 0%, #0a1a2e 100%); --nav-ink: #d5e1e9; --nav-muted: #7f94a3; --nav-active: #1a56b0;
   --focus: #9cc4f2; --shadow: 0 1px 2px rgba(0, 0, 0, .4), 0 6px 18px rgba(0, 0, 0, .35);
   --crit: #e0457f; --crit-on: #1a0610; --crit-text: #ff8fb6; --crit-soft: #3a1626;
   --warn: #f07a2a; --warn-on: #1a1206; --warn-text: #ffab70; --warn-soft: #3a2414;
   --adv: #e2c24a; --adv-on: #1d1803; --adv-text: #ecd377; --adv-soft: #352e12;
   --ok: #19b3a2; --ok-on: #04201d; --ok-chip: #19b3a2; --ok-text: #5fd6c8; --ok-soft: #10302d;
   --data: #9b6bf2; --data-on: #12082a; --data-text: #c4a7fa; --data-soft: #2a1d48;
-  --chart-line: #7fb2ec; --chart-grid: #22343f; --chart-tick: #8fa1aa; --chart-limit: #ff8fb6; --chart-band: rgba(25, 179, 162, .14);
+  --chart-line: #6aa8ff; --chart-grid: #22343f; --chart-tick: #8fa1aa; --chart-limit: #ff8fb6; --chart-band: rgba(25, 179, 162, .14);
   --map-label-bg: rgba(10, 20, 28, .9); --map-label-ink: #f1f6f8;
   color-scheme: dark;
 }
@@ -45,6 +45,8 @@ button, select, input { font: inherit; color: inherit; }
 .shell { display: grid; grid-template-columns: 228px 1fr; min-height: 100vh; }
 .nav { background: var(--nav-bg); color: var(--nav-ink); padding: 18px 12px; display: flex; flex-direction: column; gap: 4px; position: sticky; top: 0; height: 100vh; }
 .nav .brand { display: flex; gap: 10px; align-items: center; padding: 4px 8px 18px; text-decoration: none; color: inherit; }
+.brand-logo { width: 40px; height: 40px; border-radius: 50%; flex: none; }
+.nav .skyline { margin-top: auto; opacity: .35; }
 .nav .brand b { font-size: 17px; line-height: 1.15; display: block; }
 .nav .brand span { font-size: 12.5px; color: var(--nav-muted); }
 .nav a.item { display: flex; gap: 10px; align-items: center; padding: 9px 12px; border-radius: 8px; color: var(--nav-ink); text-decoration: none; font-size: 15px; }
@@ -56,7 +58,8 @@ button, select, input { font: inherit; color: inherit; }
 
 .main { min-width: 0; display: flex; flex-direction: column; }
 .topbar { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 16px; padding: 14px 22px; background: var(--panel); border-bottom: 1px solid var(--line); position: sticky; top: 0; z-index: 5; }
-.topbar h1 { font-size: 22px; }
+.topbar h1 { font-size: 22px; color: var(--ink); letter-spacing: -.01em; }
+[data-theme="light"] .topbar h1 { color: #0b2545; }
 .topbar .tag { font-size: 13.5px; color: var(--muted); }
 .topbar .spacer { flex: 1; }
 .countdown { font-weight: 600; font-size: 14px; padding: 6px 12px; border-radius: 8px; background: var(--warn-soft); color: var(--warn-text); border: 1px solid color-mix(in srgb, var(--warn) 35%, transparent); white-space: nowrap; }
@@ -74,7 +77,7 @@ button, select, input { font: inherit; color: inherit; }
 .grid { display: grid; gap: 16px; }
 .ov-top { grid-template-columns: minmax(0, 1.75fr) minmax(320px, 1fr); }
 .ov-bottom { grid-template-columns: minmax(0, 1.4fr) minmax(220px, .75fr) minmax(0, 1.2fr); margin-top: 16px; }
-.card { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 16px 18px; box-shadow: var(--shadow); min-width: 0; }
+.card { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 16px 18px; box-shadow: var(--shadow); min-width: 0; }
 .card > h2 { font-size: 17px; margin-bottom: 10px; }
 .card .sub { font-size: 13px; color: var(--muted); margin: -6px 0 10px; }
 .meta-line { font-size: 12.5px; color: var(--muted); margin-top: 10px; }
