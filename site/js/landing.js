@@ -112,7 +112,8 @@
     const b = new maplibregl.LngLatBounds();
     SITES.forEach((s) => b.extend(FEATURES[s].geometry.coordinates));
     const wide = window.innerWidth > 860;
-    map.fitBounds(b, { padding: wide ? { top: 90, bottom: 90, left: window.innerWidth * 0.42, right: window.innerWidth * 0.3 } : { top: 80, bottom: window.innerHeight * 0.55, left: 30, right: 30 }, duration: 0 });
+    const right = window.innerWidth - $("hero-map").parentNode.querySelector(".gauge").getBoundingClientRect().left + 40; // keep pins clear of the alert panel
+    map.fitBounds(b, { padding: wide ? { top: 90, bottom: 90, left: window.innerWidth * 0.42, right } : { top: 80, bottom: window.innerHeight * 0.55, left: 30, right: 30 }, duration: 0 });
     map.jumpTo({ pitch: 50, bearing: -12 });
   }
   function visit(i) {

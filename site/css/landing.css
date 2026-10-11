@@ -41,11 +41,13 @@ html[lang="hi"] .hero h1 { line-height: 1.22; letter-spacing: 0; max-width: 16ch
 .g-lv.c-critical { color: #ff9fc0; } .g-lv.c-warning { color: #ffb47e; } .g-lv.c-advisory { color: #f1d777; } .g-lv.c-normal { color: #6ee0d2; } .g-lv.c-nodata { color: #c9b0ff; }
 .motion-btn { margin-top: 6px; background: none; border: 0; color: #a9bfcc; font-size: 12.5px; cursor: pointer; text-decoration: underline; padding: 2px; }
 
-/* Hover card over the hero map. The text column lets the pointer through so the pins can be hovered. */
+/* Hover card over the hero map. In the hero text only the buttons take the pointer, so pins behind the heading can be hovered. */
 .hero-inner { pointer-events: none; }
-.hero-copy, .gauge { pointer-events: auto; }
+.hero-cta a, .gauge { pointer-events: auto; }
+.hero-map .maplibregl-marker:hover { z-index: 2; } /* lift a half-covered pin (Rani Kamlapati and Khatlapura nearly touch) */
 .peek { z-index: 3; }
-.peek .maplibregl-popup-content { padding: 0; overflow: hidden; width: 320px; max-width: calc(100vw - 32px); }
+/* maplibre-gl.css loads after style.css on this page and would reset the card to white */
+.peek .maplibregl-popup-content { background: var(--panel); color: var(--ink); padding: 0; overflow: hidden; width: 320px; max-width: calc(100vw - 32px); }
 .peek-table .maplibregl-popup-content { width: 440px; }
 .peek-fig { margin: 0; background: #fff; border-bottom: 1px solid var(--line); }
 .peek-fig img { display: block; width: 100%; height: auto; }
@@ -76,4 +78,11 @@ html[lang="hi"] .hero h1 { line-height: 1.22; letter-spacing: 0; max-width: 16ch
 }
 @media (max-width: 420px) {
   .l-brand span { display: none; }
+}
+
+/* Phones: the copy covers most of the hero, so pins there would sit under the text.
+   The alert list right below names every ghat; the map stays as a quiet backdrop. */
+@media (max-width: 860px) {
+  .hero .pin { display: none; }
+  .hero-scrim { background: linear-gradient(0deg, rgba(5, 14, 21, .88) 0%, rgba(5, 14, 21, .62) 55%, rgba(5, 14, 21, .45) 100%); }
 }
