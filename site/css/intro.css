@@ -10,3 +10,7 @@ html[data-intro="1"] .intro { display: block; position: fixed; inset: 0; z-index
 .intro-skip:hover { background: rgba(255, 255, 255, .15); }
 .intro-skip:focus-visible { outline: 3px solid #8ab4ff; outline-offset: 3px; }
 @media (prefers-reduced-motion: reduce) { .intro { transition: none; } }
+
+/* Hand-off: the dashboard waits behind the video, then fades up as the video fades away. */
+html[data-intro="1"] .shell { opacity: 0; transform: scale(.985); }
+html.intro-out .shell { opacity: 1; transform: none; transition: opacity .7s ease, transform .9s cubic-bezier(.2, .7, .2, 1); }

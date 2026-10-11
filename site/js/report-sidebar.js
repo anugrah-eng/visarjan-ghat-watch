@@ -177,7 +177,7 @@
       td.b{color:#9c1a4c;font-weight:700}td.m{color:#5b21b6;background:#f3edfd}.meta{font-size:10.5pt;color:#3d4d57}.src{font-size:9.5pt;color:#5d6d76}
       section{page-break-inside:avoid}footer{margin-top:18px;font-size:9.5pt;color:#5d6d76;border-top:1px solid #c8d3d8;padding-top:8px}
       @media print{body{margin:10mm}}</style></head><body>
-      <header><svg width="34" height="40" viewBox="0 0 30 34" role="img" aria-label="${esc(T.t("logoAlt"))}"><path d="M15 1C15 1 3 15 3 22a12 12 0 0 0 24 0C27 15 15 1 15 1Z" fill="#2f86d1"/><path d="M8 24h14M10 28h10" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
+      <header><img src="img/brand/logo-128.png" width="48" height="48" alt="${esc(T.t("logoAlt"))}" style="border-radius:6px">
       <div><h1>JalDrishti · ${esc(T.t("appName"))}</h1><div class="meta">${esc(T.t("rsReportTitle"))}</div></div></header>
       <p class="meta"><b>${esc(T.t("sites"))}:</b> ${esc(chosen.map((s) => T.ghat(s)).join(", "))}<br>
       <b>${esc(T.t("season"))}:</b> ${esc(season)} · <b>${esc(T.t("rsGenerated"))}:</b> ${esc(now)}<br>

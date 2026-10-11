@@ -86,3 +86,7 @@ html[lang="hi"] .hero h1 { line-height: 1.22; letter-spacing: 0; max-width: 16ch
   .hero .pin { display: none; }
   .hero-scrim { background: linear-gradient(0deg, rgba(5, 14, 21, .88) 0%, rgba(5, 14, 21, .62) 55%, rgba(5, 14, 21, .45) 100%); }
 }
+
+@view-transition { navigation: auto; }
+::view-transition-old(root), ::view-transition-new(root) { animation-duration: .28s; }
+@media (prefers-reduced-motion: reduce) { ::view-transition-old(root), ::view-transition-new(root) { animation: none; } }

@@ -45,6 +45,8 @@
     <a class="item" href="#report" data-view="report"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3H6a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V8z"/><path d="M14 3v5h5M8 13h8M8 17h6"/></svg><span data-t="navReports"></span></a>
     <a class="item" href="#alerts" data-view="alerts"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 16V11a6 6 0 0 1 12 0v5l2 2H4zM10 20a2 2 0 0 0 4 0"/></svg><span data-t="navAlerts"></span></a>
     <a class="item" href="#about" data-view="about"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.5"/></svg><span data-t="navAbout"></span></a>
+    <div class="nav-count"><span data-t="visarjanShort"></span><b id="countdown"></b>
+      <button id="btn-brief" class="nav-brief" type="button"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v11H8l-4 4z"/><path d="M8 9h8M8 12h5"/></svg><span data-t="brief"></span></button></div>
     <div class="nav-art" aria-hidden="true">
       <svg viewBox="0 0 200 90" class="skyline"><path d="M0 90V70h8V58h4v-8h3v8h4v12h10V52l6-10 6 10v18h6V62h3V40l3-8 3 8v22h3v8h12V56c0-8 8-14 8-14s8 6 8 14v14h8V48h2v-8h2v8h2v22h10V60l5-8 5 8v10h8V36l3-10 3 10v34h6V58h12v12h10V54h3v-6h4v6h3v16h12v20z"/></svg>
       <div class="nav-motto"><svg viewBox="0 0 24 24" class="leaf"><path d="M5 19C5 9 12 4 20 4c0 9-6 15-15 15zM5 19l8-8"/></svg><span data-t="cleanWater"></span><span data-t="healthyCity"></span></div>
@@ -59,11 +61,8 @@
         <div class="tag" data-t="platformSub"></div>
       </div>
       <div class="spacer"></div>
-      <div class="pill date-pill"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg><span id="data-range"></span></div>
-      <div class="countdown" id="countdown"></div>
+      <div class="pill date-pill" title=""><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg><span id="data-range"></span><span class="age-badge" id="age-badge"></span></div>
       <button id="btn-upload" class="btn btn-primary btn-upload"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 16V4M7 9l5-5 5 5M4 16v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3"/></svg><span data-t="uploadLatest"></span></button>
-      <button id="btn-report" class="btn btn-icon" data-report="" data-t-title="rsOpen" aria-label="Download report"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v12M7 11l5 5 5-5M4 16v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3"/></svg></button>
-      <button id="btn-brief" class="btn btn-icon" data-t-title="brief" aria-label="Officer brief"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v11H8l-4 4z"/><path d="M8 9h8M8 12h5"/></svg></button>
       <div class="pill theme-pill" role="group" aria-label="Theme">
         <button data-theme-btn="light" aria-label="Light theme"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></button>
         <button data-theme-btn="dark" aria-label="Dark theme"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></svg></button>
@@ -71,6 +70,7 @@
       <div class="pill lang-pill" role="group" aria-label="Language">
         <button data-lang-btn="en" lang="en">EN</button><span aria-hidden="true">|</span><button data-lang-btn="hi" lang="hi">हिंदी</button>
       </div>
+      <button id="btn-report" class="btn-round" data-report="" data-t-title="rsOpen" aria-label="Download report"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3H6a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V8z"/><path d="M14 3v5h5M12 11v6M9.5 14.5 12 17l2.5-2.5"/></svg></button>
     </header>
 
     <section class="view" id="view-overview" aria-labelledby="h-overview">

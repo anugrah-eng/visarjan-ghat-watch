@@ -11,9 +11,10 @@
   function finish() {
     if (done) return; done = true;
     try { sessionStorage.setItem("vgw.intro", "seen"); } catch (e) {}
+    root.classList.add("intro-out"); // the dashboard fades up while the video fades away
     box.classList.add("leaving");
     setTimeout(function () {
-      root.removeAttribute("data-intro"); box.remove();
+      root.removeAttribute("data-intro"); root.classList.remove("intro-out"); box.remove();
       try { v.pause(); v.removeAttribute("src"); v.load(); } catch (e) {}
       window.dispatchEvent(new Event("resize")); // let the map size itself now the page is visible
     }, 700);

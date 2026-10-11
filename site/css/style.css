@@ -45,7 +45,7 @@ button, select, input { font: inherit; color: inherit; }
 .shell { display: grid; grid-template-columns: 228px 1fr; min-height: 100vh; }
 .nav { background: var(--nav-bg); color: var(--nav-ink); padding: 18px 12px; display: flex; flex-direction: column; gap: 4px; position: sticky; top: 0; height: 100vh; }
 .nav .brand { display: flex; gap: 10px; align-items: center; padding: 4px 8px 18px; text-decoration: none; color: inherit; }
-.brand-logo { width: 40px; height: 40px; border-radius: 50%; flex: none; }
+.brand-logo { width: 40px; height: 40px; border-radius: 6px; object-fit: contain; flex: none; }
 .nav .skyline { margin-top: auto; opacity: .35; }
 .nav .brand b { font-size: 17px; line-height: 1.15; display: block; }
 .nav .brand span { font-size: 12.5px; color: var(--nav-muted); }
@@ -265,3 +265,10 @@ td.ok a { color: var(--ink); text-decoration: none; border-bottom: 1px dotted va
   .small-multiples { grid-template-columns: 1fr; }
 }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+
+/* Smooth navigation: cross-fade between pages of the site (where the browser supports it) and between views. */
+@view-transition { navigation: auto; }
+::view-transition-old(root), ::view-transition-new(root) { animation-duration: .28s; }
+@keyframes view-in { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+.view.on { animation: view-in .28s ease-out; }
+@media (prefers-reduced-motion: reduce) { ::view-transition-old(root), ::view-transition-new(root) { animation: none; } .view.on { animation: none; } }

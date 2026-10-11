@@ -59,7 +59,7 @@
   const UI = {
     appName: { en: "JalDrishti", hi: "जलदृष्टि" }, appSub: { en: "Bhopal WaterWatch", hi: "भोपाल जल निगरानी" },
     platformTitle: { en: "Bhopal Water Quality Management Platform", hi: "भोपाल जल गुणवत्ता प्रबंधन मंच" },
-    platformSub: { en: "Cleaner lakes. Healthier communities. Visarjan ghats checked against CPCB bathing limits.", hi: "स्वच्छ झीलें, स्वस्थ समुदाय। विसर्जन घाटों की CPCB स्नान सीमा से तुलना।" },
+    platformSub: { en: "Cleaner lakes. Healthier communities.", hi: "स्वच्छ झीलें, स्वस्थ समुदाय।" },
     introLine: { en: "Water quality at Bhopal's visarjan ghats", hi: "भोपाल के विसर्जन घाटों की जल गुणवत्ता" }, skip: { en: "Skip intro", hi: "परिचय छोड़ें" },
     tagline: { en: "Bhopal immersion ghats, checked against CPCB bathing-water limits", hi: "भोपाल के विसर्जन घाट, CPCB स्नान-जल सीमा से तुलना" },
     countdown: { en: "Durga Visarjan 20 Oct 2026: {n} days left", hi: "दुर्गा विसर्जन 20 अक्टूबर 2026: {n} दिन शेष" },
@@ -140,6 +140,8 @@
     inspectionCopied: { en: "Inspection request copied. Paste it into WhatsApp or email to the field team.", hi: "निरीक्षण अनुरोध कॉपी हो गया। इसे व्हाट्सऐप या ईमेल से फ़ील्ड टीम को भेजें।" },
     satThumb: { en: "Satellite view of the site (no photo in the reports)", hi: "स्थल का उपग्रह दृश्य (रिपोर्ट में फ़ोटो नहीं)" },
     photoThumb: { en: "Photo from the MPPCB report", hi: "MPPCB रिपोर्ट से फ़ोटो" },
+    visarjanShort: { en: "Durga Visarjan, 20 Oct", hi: "दुर्गा विसर्जन, 20 अक्टूबर" }, daysToGo: { en: "{n} days to go", hi: "{n} दिन शेष" },
+    daysOld: { en: "{n} d old", hi: "{n} दिन पुराना" }, daysAgo: { en: "{n} days ago", hi: "{n} दिन पहले" }, closePanel: { en: "Close", hi: "बंद करें" },
     over: { en: "{v} vs limit {l}", hi: "{v}, सीमा {l}" },
     peekPhoto: { en: "Photo from the MPPCB {year} report, page {page}, taken {date}. The camera's GPS stamp places it here.", hi: "MPPCB {year} रिपोर्ट, पृष्ठ {page} से फ़ोटो, {date} को ली गई। कैमरे का GPS निशान इसे यहीं बताता है।" },
     peekNoPhoto: { en: "The MPPCB reports have no photo of this ghat. This is its water-test table from {season}, report page {page}.", hi: "MPPCB रिपोर्ट में इस घाट की कोई फ़ोटो नहीं है। यह {season} की जल-जाँच तालिका है, रिपोर्ट पृष्ठ {page}।" },

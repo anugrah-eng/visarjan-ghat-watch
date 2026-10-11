@@ -81,7 +81,11 @@
     document.querySelectorAll("[data-lang-btn]").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.langBtn === T.lang)));
     const th = document.documentElement.getAttribute("data-theme");
     document.querySelectorAll("[data-theme-btn]").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.themeBtn === th)));
-    $("countdown").textContent = T.t("countdown", { n: Brief.daysLeft(cfg) });
+    $("countdown").textContent = T.t("daysToGo", { n: Brief.daysLeft(cfg) });
+    const nw = newest();
+    if (nw) { const age = Math.floor((NOW - new Date(nw.date + "T00:00:00Z")) / 86400000);
+      $("age-badge").textContent = T.t("daysOld", { n: age }); $("age-badge").classList.toggle("old", age > cfg.alerts.staleDays);
+      $("age-badge").parentElement.title = T.t("freshness", { season: seasonLabel(nw.season), date: dateLabel(nw.date) }); }
     // Date range of the data on screen (sampling dates are approximate: festival days).
     const ds = state.readings.filter((r) => r.value !== null).map((r) => A.sampleDate(r, cfg.alerts)).sort((x, y) => x - y);
     const m = (d) => d.toLocaleDateString(T.lang === "hi" ? "hi-IN" : "en-IN", { month: "short", year: "numeric", timeZone: "UTC" });
@@ -197,11 +201,9 @@
       body = `<div class="mtiles">${KEY_PARAMS.map(tile).join("")}</div>
         <dl class="facts2">
           <dt><svg class="i" viewBox="0 0 24 24"><path d="M2 12c3-3 5-3 8 0s5 3 8 0 4-2 4-2M2 17c3-3 5-3 8 0s5 3 8 0 4-2 4-2"/></svg>${esc(T.t("waterBody"))}</dt><dd>${esc(T.water(f.water_body))}</dd>
-          <dt><svg class="i" viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg>${esc(T.t("lastUpdated"))}</dt><dd>${esc(dateLabel(a.recordedAt))} <span class="muted small">(${esc(T.t("approx"))}, ${esc(seasonLabel(a.season))})</span></dd>
+          <dt><svg class="i" viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg>${esc(T.t("lastUpdated"))}</dt><dd>≈ ${esc(dateLabel(a.recordedAt))}${a.ageDays !== null ? ` · <span class="${a.stale ? "age-old" : ""}">${esc(T.t("daysAgo", { n: a.ageDays }))}</span>` : ""}</dd>
           <dt><svg class="i" viewBox="0 0 24 24"><ellipse cx="12" cy="6" rx="8" ry="3"/><path d="M4 6v12c0 1.7 3.6 3 8 3s8-1.3 8-3V6M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg>${esc(T.t("dataSource"))}</dt><dd>MPPCB (${esc(seasonLabel(a.season))}${pages.length ? `, p. ${pages.join(", ")}` : ""})</dd>
         </dl>
-        ${a.triggers.length ? `<div class="gp-alert"><b>${esc(T.t("triggered"))}:</b> ${triggerText(a.triggers[0])}</div>` : ""}
-        <div class="gp-act"><b>${esc(T.t("actions"))}:</b> ${esc(T.action(a.actions[0].key))}${a.actions[1] ? `; ${esc(T.action(a.actions[1].key))}` : ""}</div>
         <div class="gp-btns"><button class="btn btn-outline" id="gp-export"><svg class="i" viewBox="0 0 24 24"><path d="M12 4v12M7 11l5 5 5-5M4 16v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3"/></svg>${esc(T.t("downloadCsv"))}</button></div>`;
     } else if (state.tab === "params") {
       body = `<table class="tbl ptbl"><tbody>${cfg.parameterOrder.map((p) => { const r = latestOf(a.site, a.season, p); const br = r && S.breach(r, cfg) === true;
@@ -218,20 +220,21 @@
         <button class="btn btn-outline" id="gp-export">${esc(T.t("downloadCsv"))}</button></div>`;
     }
     $("ghat-panel").innerHTML = `<div class="gp2-head">${thumb(a.site, "gp-thumb")}<div class="gp2-name"><h2>${esc(T.ghat(a.site))}</h2>
-        <div class="small muted">${esc(T.water(f.water_body))}</div><div class="gp2-st">${statusChip(a)}</div></div></div>
-      ${a.stale && a.ageDays !== null ? `<div class="stale-note">⌛ ${esc(T.t("outdatedLong", { d: a.ageDays, w: cfg.alerts.staleDays }))}</div>` : ""}
+        <div class="small muted">${esc(T.water(f.water_body))}</div><div class="gp2-st">${statusChip(a)}</div></div>
+        <button class="gp-close" id="gp-close" aria-label="${esc(T.t("closePanel"))}">✕</button></div>
       <div class="tabs2" role="tablist">${tabs.map((t) => `<button role="tab" data-tab="${t}" aria-selected="${t === state.tab}">${esc(T.t(tabLabel[t]))}</button>`).join("")}</div>
       <div class="gp2-body">${body}</div>`;
     $("ghat-panel").querySelectorAll("[data-tab]").forEach((b) => (b.onclick = () => { state.tab = b.dataset.tab; renderGhatPanel(); $("ghat-panel").querySelector(`[data-tab="${state.tab}"]`).focus(); }));
     const ex = $("gp-export"); if (ex) ex.onclick = () => exportReadings(state.readings.filter((r) => r.site === a.site), `${a.site.split(" ")[0].toLowerCase()}_readings.csv`);
     const br = $("gp-brief"); if (br) br.onclick = () => $("btn-brief").click();
+    $("gp-close").onclick = () => { if (state.popup) state.popup.remove(); if (state.bm) fitGhats(); };
   }
   function renderSitesTable() {
     const gaps = new Set(state.results.ghats.filter((g) => g.latestGap).map((g) => g.site));
     $("sites-table").innerHTML = `<table class="tbl sites2"><thead><tr><th>${esc(T.lang === "hi" ? "घाट" : "Site")}</th><th>${esc(T.t("waterBody"))}</th><th>${esc(T.t("status"))}</th><th>${esc(T.t("lastUpdated"))}</th></tr></thead><tbody>
-      ${SITES.map((s) => alertOf(s)).map((a) => `<tr data-site="${esc(a.site)}" class="${a.site === state.selected ? "sel" : ""}${gaps.has(a.site) ? " gap" : ""}" tabindex="0">
+      ${SITES.map((s) => alertOf(s)).map((a) => `<tr data-site="${esc(a.site)}" class="${a.site === state.selected ? "sel" : ""}${gaps.has(a.site) ? " gap" : ""}" tabindex="0"${gaps.has(a.site) ? ` title="${esc(T.lang === "hi" ? "दुर्गा 2025 में जाँच नहीं हुई" : "Not tested at Durga 2025")}"` : ""}>
         <td>${esc(T.ghat(a.site))}</td><td>${esc(T.water(FEATURES[a.site].properties.water_body))}</td>
-        <td><span class="sdot" style="background:${LV_COLOR[a.level]}" aria-hidden="true"></span>${esc(T.level(a.level))}${gaps.has(a.site) ? ` <span class="gap-tag">${esc(T.lang === "hi" ? "दुर्गा 2025 जाँच नहीं" : "No Durga 2025 test")}</span>` : ""}</td>
+        <td><span class="sdot" style="background:${LV_COLOR[a.level]}" aria-hidden="true"></span>${esc(T.level(a.level))}</td>
         <td>${a.recordedAt ? esc(new Date(a.recordedAt + "T00:00:00Z").toLocaleDateString(T.lang === "hi" ? "hi-IN" : "en-IN", { month: "short", year: "numeric", timeZone: "UTC" })) : "—"}${a.stale ? ` <span class="txt-stale" title="${esc(T.t("outdated"))}">⌛</span>` : ""}</td></tr>`).join("")}</tbody></table>`;
     document.querySelectorAll("#sites-table tr[data-site]").forEach((tr) => {
       tr.onclick = () => select(tr.dataset.site, true);
@@ -526,6 +529,12 @@
 
   // ---------- routing ----------
   function route() {
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (!reduce && document.startViewTransition && route.ready) { document.startViewTransition(() => showRoute()); return; }
+    showRoute();
+    route.ready = true;
+  }
+  function showRoute() {
     const h = decodeURIComponent(location.hash.slice(1));
     let view = h.split("=")[0] || "overview";
     if (!["overview", "map", "ghat", "compare", "alerts", "report", "about", "brief"].includes(view)) view = "overview";
@@ -546,7 +555,7 @@
       state.bm.map.once("idle", () => { state.bm.map.resize(); fitGhats(); });
     }, 0);
     $("nav").classList.remove("open");
-    window.scrollTo(0, 0);
+    window.scrollTo({ top: 0, behavior: "instant" });
   }
   function toast(msg) { const t = $("toast"); t.textContent = msg; t.hidden = false; clearTimeout(toast._t); toast._t = setTimeout(() => (t.hidden = true), 5000); }
   function refresh() {

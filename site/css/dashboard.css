@@ -7,7 +7,7 @@
 .nav .brand { padding: 2px 6px 22px; }
 .nav .brand b { font-size: 19px; }
 .nav .brand span { font-size: 13.5px; color: var(--nav-ink); opacity: .85; }
-.brand-logo { width: 44px; height: 44px; box-shadow: 0 0 0 2px rgba(255, 255, 255, .25); }
+.brand-logo { width: 46px; height: 46px; }
 .nav a.item { gap: 14px; padding: 11px 14px; border-radius: 10px; font-size: 15px; }
 .nav a.item .i { width: 21px; height: 21px; }
 .nav a.item[aria-current="page"] { background: var(--nav-active); box-shadow: 0 6px 16px rgba(21, 101, 216, .35); }
@@ -153,3 +153,55 @@
   .donut-wrap { grid-template-columns: 1fr; justify-items: center; }
   .pin2 .plbl { display: none; }
 }
+
+/* ---- Second pass: closer to the reference layout ---- */
+.topbar { flex-wrap: nowrap; padding: 12px 24px; min-height: 76px; }
+.tb-title .tag { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.age-badge { font-size: 12px; font-weight: 700; padding: 2px 7px; border-radius: 6px; background: var(--ok-soft); color: var(--ok-text); margin-left: 2px; }
+.age-badge.old { background: var(--adv-soft); color: var(--adv-text); }
+.btn-round { width: 44px; height: 44px; border-radius: 50%; border: 0; display: grid; place-items: center; cursor: pointer; background: #42505e; color: #fff; flex: none; }
+.btn-round:hover { background: var(--accent); }
+.nav-count { margin-top: 18px; background: rgba(255, 255, 255, .07); border: 1px solid rgba(255, 255, 255, .12); border-radius: 12px; padding: 10px 12px; color: var(--nav-ink); font-size: 13px; display: flex; flex-direction: column; gap: 2px; }
+.nav-count b { font-size: 17px; color: #fff; }
+.nav-brief { margin-top: 8px; display: inline-flex; align-items: center; gap: 8px; border: 1px solid rgba(255, 255, 255, .25); background: transparent; color: #fff; border-radius: 8px; padding: 6px 10px; font: inherit; font-size: 13px; cursor: pointer; }
+.nav-brief:hover { background: rgba(255, 255, 255, .1); }
+.nav-brief .i { width: 16px; height: 16px; }
+.nav-art { padding-top: 40px; }
+.view { padding: 18px 24px 24px; }
+.ov2-top { align-items: stretch; grid-template-columns: minmax(0, 2.15fr) minmax(360px, 1fr); }
+.map-card { min-height: 440px; height: 100%; }
+.gp2 { display: flex; flex-direction: column; }
+.gp2-head { grid-template-columns: 140px 1fr auto; }
+.gp-close { border: 0; background: none; font-size: 20px; color: var(--muted); cursor: pointer; padding: 0 4px; line-height: 1; align-self: start; }
+.gp-close:hover { color: var(--ink); }
+.gp2-st { flex-wrap: nowrap; }
+.gp2-st .lv-stale { display: none; }
+.tabs2 { margin: 14px 0; }
+.facts2 { margin: 14px 0 6px; gap: 9px 16px; }
+.age-old { color: var(--adv-text); font-weight: 600; }
+.gp-btns { margin-top: auto; padding-top: 10px; }
+.ov2-bottom { margin-top: 18px; align-items: stretch; }
+.ov2-bottom .card { padding: 14px 16px; }
+.ov2-bottom .card > h2, .card-h h2 { font-size: 18px; margin-bottom: 10px; }
+#sites-table { overflow-x: auto; }
+.sites2 td, .sites2 th { white-space: nowrap; padding: 7px 8px; font-size: 13.5px; }
+.sites2 tbody tr { border-bottom: 1px solid var(--line-2); }
+.al2 { padding: 8px 10px; }
+.al-gap .al-txt span { font-size: 12.5px; }
+.donut-wrap { grid-template-columns: 170px 1fr; }
+.donut { width: 170px; height: 170px; }
+.legend2 li { white-space: nowrap; }
+@media (max-width: 1500px) { .tb-title .tag { display: none; } }
+@media (max-width: 1280px) { .topbar { flex-wrap: wrap; } .map-card { height: auto; } }
+@media (max-width: 760px) { .lang-pill span { display: none; } .gp2-head { grid-template-columns: 100px 1fr auto; } }
+/* fit the reference proportions at 1600x900 */
+.sites2 td:first-child { white-space: normal; min-width: 150px; }
+.sites2 td, .sites2 th { padding: 6px 7px; font-size: 13px; }
+.legend2 b { margin-left: 14px; }
+.donut-wrap { grid-template-columns: 150px 1fr; gap: 12px; }
+.donut { width: 150px; height: 150px; }
+.gp2 { padding: 16px; }
+.gp2-head { grid-template-columns: 120px 1fr auto; gap: 12px; }
+.gp-thumb { width: 120px; height: 90px; }
+.mt { padding: 10px; }
+.map-card { min-height: 420px; }
