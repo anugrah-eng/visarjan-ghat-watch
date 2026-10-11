@@ -46,18 +46,67 @@
     const mb = $("motion-btn");
     if (map && !reduced) { mb.hidden = false; mb.textContent = T.t(timer ? "pauseTour" : "playTour"); }
     if (map) renderLabels();
+    if (peek) peek.setHTML(peekHTML(alerts[peekI]));
   }
 
   // ---------- map ----------
   let labels = [];
   function renderLabels() {
     labels.forEach((m) => m.remove());
-    labels = alerts.map((a) => {
+    labels = alerts.map((a, i) => {
       const el = document.createElement("div");
       el.className = "pin" + (a.stale ? " stale" : "");
       el.innerHTML = `<span class="dot lv-${a.level}">${ICON[a.level]}</span><span class="lbl">${esc(T.ghat(a.site, true))}</span>`;
+      el.addEventListener("mouseenter", () => showPeek(i));
+      el.addEventListener("mouseleave", hidePeek);
+      el.addEventListener("click", () => showPeek(i)); // touch screens have no hover
       return new maplibregl.Marker({ element: el, anchor: "top" }).setLngLat(FEATURES[a.site].geometry.coordinates).addTo(map);
     });
+  }
+
+  // ---------- hover card: the ghat's image over the map ----------
+  // A photo when the MPPCB reports have one (only Bairagarh), otherwise the ghat's newest water-test table.
+  // Opens on pin hover or tap, and on hover or focus of the ghat's row in the alert list. Pauses the tour while open.
+  const IMAGES = window.GHAT_IMAGES || {};
+  let peek = null, peekI = -1, hideT = null, resumeTour = false;
+  function peekHTML(a) {
+    const c = IMAGES[a.site].card, name = T.ghat(a.site);
+    const when = c.festival ? `${T.fest(c.festival)} ${c.year}` : "";
+    const date = c.date ? new Date(c.date + "T00:00:00").toLocaleDateString(T.lang === "hi" ? "hi-IN" : "en-IN", { day: "numeric", month: "short", year: "numeric" }) : "";
+    const alt = c.kind === "photo" ? T.t("peekPhotoAlt", { name }) : T.t("peekTableAlt", { name, season: when });
+    const cap = c.kind === "photo" ? T.t("peekPhoto", { year: c.year, page: c.page, date }) : T.t("peekNoPhoto", { season: when, page: c.page });
+    return `<figure class="peek-fig"><img src="${esc(c.src)}" alt="${esc(alt)}"></figure>
+      <div class="peek-body">
+        <div class="peek-h"><span class="dot lv-${a.level}" aria-hidden="true">${ICON[a.level]}</span><strong>${esc(name)}</strong></div>
+        <div class="peek-sub">${esc(T.level(a.level))} · ${esc(season(a))}</div>
+        <p class="peek-cap">${esc(cap)}</p>
+        <a class="peek-link" href="app.html#ghat=${encodeURIComponent(a.site)}">${esc(T.t("viewGhat"))} →</a>
+      </div>`;
+  }
+  function setTourBtn() { const mb = $("motion-btn"); if (!mb.hidden) mb.textContent = T.t(timer ? "pauseTour" : "playTour"); }
+  function showPeek(i, fromList) {
+    clearTimeout(hideT);
+    if (!map || !IMAGES[alerts[i].site] || (peek && peekI === i)) return;
+    if (timer) { resumeTour = true; clearTimeout(timer); timer = null; map.stop(); setTourBtn(); }
+    const c = FEATURES[alerts[i].site].geometry.coordinates;
+    if (fromList) { // bring an off-screen pin into view
+      const p = map.project(c), box = map.getContainer();
+      if (p.x < 0 || p.y < 0 || p.x > box.clientWidth || p.y > box.clientHeight) map.easeTo({ center: c, duration: 800, essential: false });
+    }
+    if (peek) peek.remove();
+    peekI = i;
+    peek = new maplibregl.Popup({ closeButton: false, closeOnClick: false, focusAfterOpen: false, offset: 8, maxWidth: "none",
+      className: `peek peek-${IMAGES[alerts[i].site].card.kind}` }).setLngLat(c).setHTML(peekHTML(alerts[i])).addTo(map);
+    const el = peek.getElement();
+    el.addEventListener("mouseenter", () => clearTimeout(hideT)); // the card itself can be hovered, so its link is reachable
+    el.addEventListener("mouseleave", hidePeek);
+  }
+  function hidePeek() { clearTimeout(hideT); hideT = setTimeout(closePeek, 250); }
+  function closePeek() {
+    clearTimeout(hideT);
+    if (!peek) return;
+    peek.remove(); peek = null; peekI = -1;
+    if (resumeTour) { resumeTour = false; timer = setTimeout(() => visit(here + 1), 2500); setTourBtn(); }
   }
   function overview() {
     const b = new maplibregl.LngLatBounds();
@@ -93,6 +142,7 @@
         map = bm.map;
         map.once("load", () => {
           overview(); renderLabels(); render();
+          Object.values(IMAGES).forEach((g) => (new Image().src = g.card.src)); // so the first hover shows at once
           if (!motionOff) setTimeout(play, 1200);
         });
       };
@@ -103,7 +153,14 @@
 
   document.querySelectorAll("[data-lang-btn]").forEach((b) => (b.onclick = () => { T.set(b.dataset.langBtn); render(); }));
   document.querySelectorAll("[data-theme-btn]").forEach((b) => (b.onclick = () => { window.setTheme(b.dataset.themeBtn); render(); }));
-  $("motion-btn").onclick = () => (timer ? pause() : play());
+  $("motion-btn").onclick = () => { resumeTour = false; timer ? pause() : play(); };
+  const gl = $("gauge-list"), row = (e) => e.target.closest("li[data-i]");
+  gl.addEventListener("mouseover", (e) => row(e) && showPeek(Number(row(e).dataset.i), true));
+  gl.addEventListener("mouseleave", hidePeek);
+  gl.addEventListener("focusin", (e) => row(e) && showPeek(Number(row(e).dataset.i), true));
+  gl.addEventListener("focusout", hidePeek);
+  document.addEventListener("keydown", (e) => { if (e.key === "Escape") closePeek(); });
+  document.addEventListener("click", (e) => { if (!e.target.closest(".pin, .maplibregl-popup, #gauge-list")) closePeek(); });
   render();
   if (document.readyState === "complete") (window.requestIdleCallback || setTimeout)(loadMap);
   else window.addEventListener("load", () => (window.requestIdleCallback || setTimeout)(loadMap));

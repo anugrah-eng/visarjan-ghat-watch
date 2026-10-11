@@ -21,7 +21,7 @@
   const PLACES = [
     { id: "bhopal", en: "Bhopal", hi: "भोपाल", lngLat: [77.412, 23.259], size: "lg" },
     { id: "upper", en: "Upper Lake", hi: "बड़ा तालाब", lngLat: [77.355, 23.245], size: "md" },
-    { id: "lower", en: "Lower Lake", hi: "छोटा तालाब", lngLat: [77.402, 23.252], size: "sm" },
+    { id: "lower", en: "Lower Lake", hi: "छोटा तालाब", lngLat: [77.412, 23.243], size: "sm" },
   ];
 
   const PARAMS = {
@@ -109,6 +109,10 @@
     footText: { en: "Built for the Bhopal Municipal Corporation officer planning Durga visarjan. Open source and offered to the Government of Madhya Pradesh.", hi: "दुर्गा विसर्जन की योजना बनाने वाले भोपाल नगर निगम अधिकारी के लिए बनाया गया। ओपन सोर्स, मध्य प्रदेश शासन को समर्पित।" },
     pauseTour: { en: "Pause the map tour", hi: "नक्शा भ्रमण रोकें" }, playTour: { en: "Play the map tour", hi: "नक्शा भ्रमण चलाएँ" },
     over: { en: "{v} vs limit {l}", hi: "{v}, सीमा {l}" },
+    peekPhoto: { en: "Photo from the MPPCB {year} report, page {page}, taken {date}. The camera's GPS stamp places it here.", hi: "MPPCB {year} रिपोर्ट, पृष्ठ {page} से फ़ोटो, {date} को ली गई। कैमरे का GPS निशान इसे यहीं बताता है।" },
+    peekNoPhoto: { en: "The MPPCB reports have no photo of this ghat. This is its water-test table from {season}, report page {page}.", hi: "MPPCB रिपोर्ट में इस घाट की कोई फ़ोटो नहीं है। यह {season} की जल-जाँच तालिका है, रिपोर्ट पृष्ठ {page}।" },
+    peekPhotoAlt: { en: "Photo of {name} from the MPPCB report", hi: "MPPCB रिपोर्ट से {name} की फ़ोटो" },
+    peekTableAlt: { en: "MPPCB water-test table for {name}, {season}", hi: "{name} की MPPCB जल-जाँच तालिका, {season}" },
   };
 
   const FEST = { Ganesh: { en: "Ganesh", hi: "गणेश" }, Durga: { en: "Durga", hi: "दुर्गा" } };

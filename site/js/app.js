@@ -100,8 +100,12 @@
     state.bm.map.resize();
     // Fit flat, then tilt and step back a little so the near (southern) ghats stay in view.
     const map = state.bm.map;
-    map.fitBounds(b, { padding: { top: 70, bottom: 50, left: 50, right: 60 }, duration: 0, pitch: 0 });
-    map.jumpTo({ pitch: 35, zoom: map.getZoom() - 0.35 });
+    const narrow = window.innerWidth < 760;
+    map.fitBounds(b, { padding: narrow ? { top: 100, bottom: 110, left: 40, right: 60 } : { top: 70, bottom: 50, left: 50, right: 60 }, duration: 0, pitch: 0 });
+    map.jumpTo({ pitch: narrow ? 0 : 35, zoom: map.getZoom() - (narrow ? 0.25 : 0.35) });
+    // Start the attribution collapsed on small screens (it stays one tap away).
+    const collapse = () => document.querySelectorAll("#map .maplibregl-ctrl-attrib").forEach((el) => el.classList.remove("maplibregl-compact-show"));
+    if (narrow) { collapse(); map.once("idle", collapse); }
     state.fitted = true;
   }
   function markBase() {
@@ -453,7 +457,12 @@
     if (view === "alerts") renderAlertsView();
     if (view === "report") renderReport();
     if (view === "about") renderAbout();
-    if (view === "overview" && state.bm) setTimeout(() => (state.fitted ? state.bm.map.resize() : fitGhats()), 0);
+    if (view === "overview" && state.bm) setTimeout(() => {
+      if (state.fitted) return state.bm.map.resize();
+      fitGhats();
+      // Fonts and the wrapped header can change the layout after the first fit; fit again once settled.
+      state.bm.map.once("idle", () => { state.bm.map.resize(); fitGhats(); });
+    }, 0);
     $("nav").classList.remove("open");
     window.scrollTo(0, 0);
   }

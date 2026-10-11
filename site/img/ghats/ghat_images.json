@@ -1,0 +1,498 @@
+{
+ "ghats": [
+  {
+   "site": "Bairagarh (Sant Hirdaram) kund",
+   "slug": "bairagarh-sant-hirdaram-kund",
+   "water_body": "Upper Lake",
+   "site_match_confidence": "high",
+   "photos": [
+    {
+     "file": "photos/bairagarh-sant-hirdaram-kund_2023_p011.jpeg",
+     "source_image": "resources/extracted/images/2023_p011_i3.jpeg",
+     "report": "Idol_immer._Report_23_CPCB.pdf",
+     "page": 11,
+     "gps_lat": 23.269275,
+     "gps_lon": 77.330827,
+     "stamp_date": "2023-09-28",
+     "stamp_text": "GPSMapCamera | Bhopal,MadhyaPradesh,India | 789J+W95,Mochipura,Bairagarh,Bhopal,MadhyaPradesh462030, | india | Lat23.269275° | Google | Long77.330827° | 28/09/2302:55PMGMT+05:30",
+     "matched_by": "GPS stamp names bairagarh"
+    }
+   ],
+   "source_tables": [
+    {
+     "file": "source_tables/bairagarh-sant-hirdaram-kund/2023-durga_p060.png",
+     "year": 2023,
+     "festival": "Durga",
+     "report": "Idol_immer._Report_23_CPCB.pdf",
+     "page": 60,
+     "site_as_printed": "Sant Hirdaram visarjan kund,Bairagarh(upper lake),Bhopal",
+     "dpi": 200
+    },
+    {
+     "file": "source_tables/bairagarh-sant-hirdaram-kund/2023-ganesh_p026.png",
+     "year": 2023,
+     "festival": "Ganesh",
+     "report": "Idol_immer._Report_23_CPCB.pdf",
+     "page": 26,
+     "site_as_printed": "Sant Hirdaram Visarjankund, Bairagarh, Bhopal",
+     "dpi": 200
+    },
+    {
+     "file": "source_tables/bairagarh-sant-hirdaram-kund/2024-durga_p025.png",
+     "year": 2024,
+     "festival": "Durga",
+     "report": "Ganesh_and_Durga_visarjan_report-2024.pdf",
+     "page": 25,
+     "site_as_printed": "Sant Hirdaram Visarjan Kund, Bairagarh (Upper Lake), Bhopal",
+     "dpi": 200
+    },
+    {
+     "file": "source_tables/bairagarh-sant-hirdaram-kund/2024-ganesh_p069.png",
+     "year": 2024,
+     "festival": "Ganesh",
+     "report": "Ganesh_and_Durga_visarjan_report-2024.pdf",
+     "page": 69,
+     "site_as_printed": "Sant Hirdaram Visarjankund, Bairagarh, Bhopal",
+     "dpi": 200
+    },
+    {
+     "file": "source_tables/bairagarh-sant-hirdaram-kund/2025-ganesh_p028.png",
+     "year": 2025,
+     "festival": "Ganesh",
+     "report": "Ganesh_and_Durga_visarjan_report-2025.pdf",
+     "page": 28,
+     "site_as_printed": "Sant Hirdaram Visarjankund, Bairagarh, Bhopal",
+     "dpi": 200
+    }
+   ],
+   "photo_note": ""
+  },
+  {
+   "site": "Khatlapura ghat",
+   "slug": "khatlapura-ghat",
+   "water_body": "Lower Lake",
+   "site_match_confidence": "high",
+   "photos": [],
+   "source_tables": [
+    {
+     "file": "source_tables/khatlapura-ghat/2023-durga_p059.png",
+     "year": 2023,
+     "festival": "Durga",
+     "report": "Idol_immer._Report_23_CPCB.pdf",
+     "page": 59,
+     "site_as_printed": "Khatlapura visarjan ghat (Lower lake),Bhopal",
+     "dpi": 200
+    },
+    {
+     "file": "source_tables/khatlapura-ghat/2023-ganesh_p026.png",
+     "year": 2023,
+     "festival": "Ganesh",
+     "report": "Idol_immer._Report_23_CPCB.pdf",
+     "page": 26,
+     "site_as_printed": "Khatlapura Visarjanghat, Bhopal",
+     "dpi": 200
+    },
+    {
+     "file": "source_tables/khatlapura-ghat/2024-durga_p024.png",
+     "year": 2024,
+     "festival": "Durga",
+     "report": "Ganesh_and_Durga_visarjan_report-2024.pdf",
+     "page": 24,
+     "site_as_printed": "Khatlapura Visarjan Ghat (Lower lake), Bhopal",
+     "dpi": 200
+    },
+    {
+     "file": "source_tables/khatlapura-ghat/2024-ganesh_p069.png",
+     "year": 2024,
+     "festival": "Ganesh",
+     "report": "Ganesh_and_Durga_visarjan_report-2024.pdf",
+     "page": 69,
+     "site_as_printed": "Khatlapura Visarjanghat, Bhopal",
+     "dpi": 200
+    },
+    {
+     "file": "source_tables/khatlapura-ghat/2025-durga_p064.png",
+     "year": 2025,
+     "festival": "Durga",
+     "report": "Ganesh_and_Durga_visarjan_report-2025.pdf",
+     "page": 64,
+     "site_as_printed": "Khatlapura visarjan ghat (Lower lake), Bhopal",
+     "dpi": 200
+    },
+    {
+     "file": "source_tables/khatlapura-ghat/2025-ganesh_p028.png",
+     "year": 2025,
+     "festival": "Ganesh",
+     "report": "Ganesh_and_Durga_visarjan_report-2025.pdf",
+     "page": 28,
+     "site_as_printed": "Khatlapura murti visarjan ghat at lower lake, Bhopal",
+     "dpi": 200
+    }
+   ],
+   "photo_note": "No photo of this ghat in the 2023-2025 reports. Use the source table image, or add a field photo."
+  },
+  {
+   "site": "Prempura ghat",
+   "slug": "prempura-ghat",
+   "water_body": "Upper Lake",
+   "site_match_confidence": "high",
+   "photos": [],
+   "source_tables": [
+    {
+     "file": "source_tables/prempura-ghat/2023-durga_p060.png",
+     "year": 2023,
+     "festival": "Durga",
+     "report": "Idol_immer._Report_23_CPCB.pdf",
+     "page": 60,
+     "site_as_printed": "Prempura ghat, Bhopal",
+     "dpi": 200
+    },
+    {
+     "file": "source_tables/prempura-ghat/2023-ganesh_p026.png",
+     "year": 2023,
+     "festival": "Ganesh",
+     "report": "Idol_immer._Report_23_CPCB.pdf",
+     "page": 26,
+     "site_as_printed": "Prempura Visarjanghat, Bhopal",
+     "dpi": 200
+    },
+    {
+     "file": "source_tables/prempura-ghat/2024-durga_p025.png",
+     "year": 2024,
+     "festival": "Durga",
+     "report": "Ganesh_and_Durga_visarjan_report-2024.pdf",
+     "page": 25,
+     "site_as_printed": "Prempura ghat, Bhopal",
+     "dpi": 200
+    },
+    {
+     "file": "source_tables/prempura-ghat/2024-ganesh_p070.png",
+     "year": 2024,
+     "festival": "Ganesh",
+     "report": "Ganesh_and_Durga_visarjan_report-2024.pdf",
+     "page": 70,
+     "site_as_printed": "Prempura Visarjanghat, Bhopal",
+     "dpi": 200
+    },
+    {
+     "file": "source_tables/prempura-ghat/2025-durga_p065.png",
+     "year": 2025,
+     "festival": "Durga",
+     "report": "Ganesh_and_Durga_visarjan_report-2025.pdf",
+     "page": 65,
+     "site_as_printed": "Prempura ghat, Bhopal",
+     "dpi": 200
+    },
+    {
+     "file": "source_tables/prempura-ghat/2025-ganesh_p028.png",
+     "year": 2025,
+     "festival": "Ganesh",
+     "report": "Ganesh_and_Durga_visarjan_report-2025.pdf",
+     "page": 28,
+     "site_as_printed": "Prempura Visarjanghat, Bhopal",
+     "dpi": 200
+    }
+   ],
+   "photo_note": "No photo of this ghat in the 2023-2025 reports. Use the source table image, or add a field photo."
+  },
+  {
+   "site": "Rani Kamlapati ghat / Kamla Park kund",
+   "slug": "rani-kamlapati-ghat-kamla-park-kund",
+   "water_body": "Lower Lake",
+   "site_match_confidence": "medium",
+   "photos": [],
+   "source_tables": [
+    {
+     "file": "source_tables/rani-kamlapati-ghat-kamla-park-kund/2023-durga_p059.png",
+     "year": 2023,
+     "festival": "Durga",
+     "report": "Idol_immer._Report_23_CPCB.pdf",
+     "page": 59,
+     "site_as_printed": "Rani kamlapati visarjan ghat (lower lake)",
+     "dpi": 200
+    },
+    {
+     "file": "source_tables/rani-kamlapati-ghat-kamla-park-kund/2023-ganesh_p027.png",
+     "year": 2023,
+     "festival": "Ganesh",
+     "report": "Idol_immer._Report_23_CPCB.pdf",
+     "page": 27,
+     "site_as_printed": "Rani kamlapati,kamla park,murti visarjan kund,Bhopal",
+     "dpi": 200
+    },
+    {
+     "file": "source_tables/rani-kamlapati-ghat-kamla-park-kund/2024-durga_p024.png",
+     "year": 2024,
+     "festival": "Durga",
+     "report": "Ganesh_and_Durga_visarjan_report-2024.pdf",
+     "page": 24,
+     "site_as_printed": "Rani Kamlapati Visarjan Ghat (Lower Lake), Bhopal",
+     "dpi": 200
+    },
+    {
+     "file": "source_tables/rani-kamlapati-ghat-kamla-park-kund/2024-ganesh_p070.png",
+     "year": 2024,
+     "festival": "Ganesh",
+     "report": "Ganesh_and_Durga_visarjan_report-2024.pdf",
+     "page": 70,
+     "site_as_printed": "Rani Kamlapati, Kamla Park, Murti Visarjan Kund, Bhopal",
+     "dpi": 200
+    },
+    {
+     "file": "source_tables/rani-kamlapati-ghat-kamla-park-kund/2025-durga_p064.png",
+     "year": 2025,
+     "festival": "Durga",
+     "report": "Ganesh_and_Durga_visarjan_report-2025.pdf",
+     "page": 64,
+     "site_as_printed": "Rani kamlapati visarjan ghat (lower lake)",
+     "dpi": 200
+    },
+    {
+     "file": "source_tables/rani-kamlapati-ghat-kamla-park-kund/2025-ganesh_p029.png",
+     "year": 2025,
+     "festival": "Ganesh",
+     "report": "Ganesh_and_Durga_visarjan_report-2025.pdf",
+     "page": 29,
+     "site_as_printed": "Rani kamlapati,kamla park,murti visarjan kund, Bhopal",
+     "dpi": 200
+    }
+   ],
+   "photo_note": "No photo of this ghat in the 2023-2025 reports. Use the source table image, or add a field photo."
+  },
+  {
+   "site": "Hathaikheda dam / kund",
+   "slug": "hathaikheda-dam-kund",
+   "water_body": "Hathaikheda dam",
+   "site_match_confidence": "high",
+   "photos": [],
+   "source_tables": [
+    {
+     "file": "source_tables/hathaikheda-dam-kund/2023-durga_p059.png",
+     "year": 2023,
+     "festival": "Durga",
+     "report": "Idol_immer._Report_23_CPCB.pdf",
+     "page": 59,
+     "site_as_printed": "Hathaikheda dam (ghat),bhopal",
+     "dpi": 200
+    },
+    {
+     "file": "source_tables/hathaikheda-dam-kund/2023-ganesh_p027.png",
+     "year": 2023,
+     "festival": "Ganesh",
+     "report": "Idol_immer._Report_23_CPCB.pdf",
+     "page": 27,
+     "site_as_printed": "Hathaikheda visarjan kund, Bhopal",
+     "dpi": 200
+    },
+    {
+     "file": "source_tables/hathaikheda-dam-kund/2024-durga_p023.png",
+     "year": 2024,
+     "festival": "Durga",
+     "report": "Ganesh_and_Durga_visarjan_report-2024.pdf",
+     "page": 23,
+     "site_as_printed": "Hathaikheda dam (ghat), Bhopal",
+     "dpi": 200
+    },
+    {
+     "file": "source_tables/hathaikheda-dam-kund/2024-ganesh_p071.png",
+     "year": 2024,
+     "festival": "Ganesh",
+     "report": "Ganesh_and_Durga_visarjan_report-2024.pdf",
+     "page": 71,
+     "site_as_printed": "Hathaikheda Visarjan Kund, Bhopal",
+     "dpi": 200
+    },
+    {
+     "file": "source_tables/hathaikheda-dam-kund/2025-durga_p064.png",
+     "year": 2025,
+     "festival": "Durga",
+     "report": "Ganesh_and_Durga_visarjan_report-2025.pdf",
+     "page": 64,
+     "site_as_printed": "Hathaikheda dam (ghat), Bhopal",
+     "dpi": 200
+    },
+    {
+     "file": "source_tables/hathaikheda-dam-kund/2025-ganesh_p029.png",
+     "year": 2025,
+     "festival": "Ganesh",
+     "report": "Ganesh_and_Durga_visarjan_report-2025.pdf",
+     "page": 29,
+     "site_as_printed": "Hathaikheda visarjan kund, Bhopal",
+     "dpi": 200
+    }
+   ],
+   "photo_note": "No photo of this ghat in the 2023-2025 reports. Use the source table image, or add a field photo."
+  },
+  {
+   "site": "Malikhedi kund",
+   "slug": "malikhedi-kund",
+   "water_body": "Kund",
+   "site_match_confidence": "high",
+   "photos": [],
+   "source_tables": [
+    {
+     "file": "source_tables/malikhedi-kund/2023-durga_p061.png",
+     "year": 2023,
+     "festival": "Durga",
+     "report": "Idol_immer._Report_23_CPCB.pdf",
+     "page": 61,
+     "site_as_printed": "Maalikhedi visarjan kund,bhopal",
+     "dpi": 200
+    },
+    {
+     "file": "source_tables/malikhedi-kund/2023-ganesh_p027.png",
+     "year": 2023,
+     "festival": "Ganesh",
+     "report": "Idol_immer._Report_23_CPCB.pdf",
+     "page": 27,
+     "site_as_printed": "Maalikhedi visarjan kund, Bhopal",
+     "dpi": 200
+    },
+    {
+     "file": "source_tables/malikhedi-kund/2024-durga_p026.png",
+     "year": 2024,
+     "festival": "Durga",
+     "report": "Ganesh_and_Durga_visarjan_report-2024.pdf",
+     "page": 26,
+     "site_as_printed": "Maalikhedi Visarjan Kund, Bhopal",
+     "dpi": 200
+    },
+    {
+     "file": "source_tables/malikhedi-kund/2024-ganesh_p071.png",
+     "year": 2024,
+     "festival": "Ganesh",
+     "report": "Ganesh_and_Durga_visarjan_report-2024.pdf",
+     "page": 71,
+     "site_as_printed": "Maalikhedi Visarjan Kund, Bhopal",
+     "dpi": 200
+    },
+    {
+     "file": "source_tables/malikhedi-kund/2025-ganesh_p029.png",
+     "year": 2025,
+     "festival": "Ganesh",
+     "report": "Ganesh_and_Durga_visarjan_report-2025.pdf",
+     "page": 29,
+     "site_as_printed": "Maalikhedi visarjan kund, Bhopal",
+     "dpi": 200
+    }
+   ],
+   "photo_note": "No photo of this ghat in the 2023-2025 reports. Use the source table image, or add a field photo."
+  },
+  {
+   "site": "Shahpura lake ghat",
+   "slug": "shahpura-lake-ghat",
+   "water_body": "Shahpura Lake",
+   "site_match_confidence": "high",
+   "photos": [],
+   "source_tables": [
+    {
+     "file": "source_tables/shahpura-lake-ghat/2023-durga_p060.png",
+     "year": 2023,
+     "festival": "Durga",
+     "report": "Idol_immer._Report_23_CPCB.pdf",
+     "page": 60,
+     "site_as_printed": "Murti-visarjan ghat at Shahpura lake,Bhopal",
+     "dpi": 200
+    },
+    {
+     "file": "source_tables/shahpura-lake-ghat/2023-ganesh_p028.png",
+     "year": 2023,
+     "festival": "Ganesh",
+     "report": "Idol_immer._Report_23_CPCB.pdf",
+     "page": 28,
+     "site_as_printed": "Murti visarjan ghat at Shahpura lake,Bhopal",
+     "dpi": 200
+    },
+    {
+     "file": "source_tables/shahpura-lake-ghat/2024-durga_p026.png",
+     "year": 2024,
+     "festival": "Durga",
+     "report": "Ganesh_and_Durga_visarjan_report-2024.pdf",
+     "page": 26,
+     "site_as_printed": "Murti-Visarjan Ghat At Shahpura Lake, Bhopal",
+     "dpi": 200
+    },
+    {
+     "file": "source_tables/shahpura-lake-ghat/2024-ganesh_p072.png",
+     "year": 2024,
+     "festival": "Ganesh",
+     "report": "Ganesh_and_Durga_visarjan_report-2024.pdf",
+     "page": 72,
+     "site_as_printed": "Murti visarjan ghat at Shahpura ghat, Bhopal",
+     "dpi": 200
+    },
+    {
+     "file": "source_tables/shahpura-lake-ghat/2025-durga_p065.png",
+     "year": 2025,
+     "festival": "Durga",
+     "report": "Ganesh_and_Durga_visarjan_report-2025.pdf",
+     "page": 65,
+     "site_as_printed": "Murti-visarjan ghat at Shahpura lake, Bhopal",
+     "dpi": 200
+    },
+    {
+     "file": "source_tables/shahpura-lake-ghat/2025-ganesh_p030.png",
+     "year": 2025,
+     "festival": "Ganesh",
+     "report": "Ganesh_and_Durga_visarjan_report-2025.pdf",
+     "page": 30,
+     "site_as_printed": "Murti visarjan ghat at Shahpura ghat, Bhopal",
+     "dpi": 200
+    }
+   ],
+   "photo_note": "No photo of this ghat in the 2023-2025 reports. Use the source table image, or add a field photo."
+  }
+ ],
+ "other_bhopal_photos_not_at_the_7_ghats": [
+  {
+   "file": null,
+   "source_image": "resources/extracted/images/2025_p018_i4.jpeg",
+   "report": "Ganesh_and_Durga_visarjan_report-2025.pdf",
+   "page": 18,
+   "gps_lat": 23.105945,
+   "gps_lon": 77.506216,
+   "stamp_date": "2025-10-03",
+   "stamp_text": "GPSHapCamera | CheckIn | 462046,india | Lat23.105945°Long77.506216 | 03/10/25+05:30"
+  },
+  {
+   "file": null,
+   "source_image": "resources/extracted/images/2025_p026_i3.jpeg",
+   "report": "Ganesh_and_Durga_visarjan_report-2025.pdf",
+   "page": 26,
+   "gps_lat": 23.105945,
+   "gps_lon": 77.506216,
+   "stamp_date": "2025-10-03",
+   "stamp_text": "GPSMapCamera | Check In | 462046,India | Lat23.105945Long77.506216 | 03/10/25+05:30"
+  },
+  {
+   "file": null,
+   "source_image": "resources/extracted/images/2023_p009_i3.jpeg",
+   "report": "Idol_immer._Report_23_CPCB.pdf",
+   "page": 9,
+   "gps_lat": 23.099568,
+   "gps_lon": 77.514937,
+   "stamp_date": "2023-09-08",
+   "stamp_text": "GPSMapCamera | Bhopal,MadhyaPradesh,India | 3GX7+VX9,VidyaNagar,Mandideep,Bhopal, | MadhyaPradesh462046,India | Lat23.099568° | Google | Long77.514937o | 08/09/2301:00PMGMT+05:30"
+  },
+  {
+   "file": null,
+   "source_image": "resources/extracted/images/2023_p010_i4.jpeg",
+   "report": "Idol_immer._Report_23_CPCB.pdf",
+   "page": 10,
+   "gps_lat": 23.10381,
+   "gps_lon": 77.505864,
+   "stamp_date": "2023-10-23",
+   "stamp_text": "GPSMapCamera | Bhopal,MadhyaPradesh,lndia | 4G34+VFX,MahaveerNagar,industrialArea,Mandideep,Bhopal,Madhya | Pradesh462046,lndia | Lat23.10381° | Google | Long77.505864° | 23/10/2312:09PMGMT+05:30"
+  },
+  {
+   "file": null,
+   "source_image": "resources/extracted/images/2023_p017_i1.jpeg",
+   "report": "Idol_immer._Report_23_CPCB.pdf",
+   "page": 17,
+   "gps_lat": 23.301829,
+   "gps_lon": 77.344067,
+   "stamp_date": "2023-10-21",
+   "stamp_text": "B.M.C. | B.M.C | GPSMapCamera | Bhopal,Madhya Pradesh,India | 882V+QJX,Jhulelal MarketMainRd,GandhiNagar,Bhopal | MadhyaPradesh462036,India | Lat23.301829° | Long77.344067° | Google | 21/10/2303:58PMGMT+05:30"
+  }
+ ]
+}
