@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dashboard · Visarjan Ghat Watch · Bhopal</title>
+  <script src="js/theme.js"></script>
+  <link rel="preload" href="fonts/mukta-latin-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="fonts/fonts.css">
+  <link rel="stylesheet" href="vendor/maplibre/maplibre-gl.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/print.css" media="print">
+</head>
+<body>
+<div class="shell">
+  <nav class="nav" id="nav" aria-label="Main">
+    <a class="brand" href="index.html">
+      <svg width="30" height="34" viewBox="0 0 30 34" aria-hidden="true"><path d="M15 1C15 1 3 15 3 22a12 12 0 0 0 24 0C27 15 15 1 15 1Z" fill="#5aa6e8"/><path d="M8 24h14M10 28h10" stroke="#10263a" stroke-width="2" stroke-linecap="round"/></svg>
+      <div><b data-t="appName"></b><span data-t="bhopal"></span></div>
+    </a>
+    <a class="item" href="#overview" data-view="overview"><span class="ico" aria-hidden="true">⌂</span><span data-t="navOverview"></span></a>
+    <a class="item" href="#ghat" data-view="ghat"><span class="ico" aria-hidden="true">◉</span><span data-t="navGhat"></span></a>
+    <a class="item" href="#compare" data-view="compare"><span class="ico" aria-hidden="true">≡</span><span data-t="navCompare"></span></a>
+    <a class="item" href="#alerts" data-view="alerts"><span class="ico" aria-hidden="true">!</span><span data-t="navAlerts"></span></a>
+    <a class="item" href="#report" data-view="report"><span class="ico" aria-hidden="true">▤</span><span data-t="navReport"></span></a>
+    <a class="item" href="#about" data-view="about"><span class="ico" aria-hidden="true">i</span><span data-t="navAbout"></span></a>
+    <div class="foot" id="nav-foot"></div>
+  </nav>
+
+  <div class="main">
+    <header class="topbar">
+      <button class="btn nav-toggle" id="nav-toggle" aria-label="Menu" aria-controls="nav">☰</button>
+      <div>
+        <h1 data-t="appName"></h1>
+        <div class="tag" data-t="tagline"></div>
+      </div>
+      <div class="spacer"></div>
+      <div class="countdown" id="countdown"></div>
+      <div class="seg" role="group" aria-label="Coverage">
+        <button aria-pressed="true" data-t="bhopal"></button>
+        <button id="btn-statewide" aria-pressed="false" data-t="statewide"></button>
+      </div>
+      <button id="btn-upload" class="btn">⬆ <span data-t="upload"></span></button>
+      <button id="btn-brief" class="btn btn-primary" data-t="brief"></button>
+      <div class="seg" role="group" aria-label="Theme">
+        <button data-theme-btn="light" aria-label="Light theme">☀</button>
+        <button data-theme-btn="dark" aria-label="Dark theme">☾</button>
+      </div>
+      <div class="seg" role="group" aria-label="Language / भाषा">
+        <button data-lang-btn="en" lang="en">EN</button>
+        <button data-lang-btn="hi" lang="hi">हिंदी</button>
+      </div>
+    </header>
+
+    <section class="view" id="view-overview" aria-labelledby="h-overview">
+      <h2 class="sr-only" id="h-overview" data-t="navOverview"></h2>
+      <div class="grid ov-top">
+        <div class="card map-card">
+          <div id="map" role="region" aria-label="Map of Bhopal immersion ghats"></div>
+          <div class="map-ctrl">
+            <div class="seg" role="group" aria-label="Basemap">
+              <button data-base="satellite" data-t="satellite"></button>
+              <button data-base="streets" data-t="streets"></button>
+            </div>
+          </div>
+          <div class="map-note" id="map-note"></div>
+        </div>
+        <div class="card" id="ghat-panel" aria-live="polite"></div>
+      </div>
+      <div class="grid ov-bottom">
+        <div class="card"><h2 data-t="sites"></h2><div id="sites-table"></div><div class="meta-line" id="ov-source"></div></div>
+        <div class="card"><h2 data-t="statusCounts"></h2><div id="counts"></div></div>
+        <div class="card"><h2 data-t="recentAlerts"></h2><ul class="alerts" id="alert-list"></ul></div>
+      </div>
+    </section>
+
+    <section class="view" id="view-ghat"></section>
+    <section class="view" id="view-compare"></section>
+    <section class="view" id="view-alerts"></section>
+    <section class="view" id="view-report"></section>
+    <section class="view" id="view-about"></section>
+  </div>
+</div>
+
+<dialog id="dlg-brief" class="dlg">
+  <div class="dlg-head">
+    <h2 data-t="brief"></h2>
+    <div class="seg" role="tablist">
+      <button data-lang="en" aria-pressed="true">English</button>
+      <button data-lang="hi" aria-pressed="false">हिंदी</button>
+      <button data-lang="both" aria-pressed="false">EN + हिं</button>
+    </div>
+    <button class="x" data-close aria-label="Close">✕</button>
+  </div>
+  <div id="brief-body" class="brief"></div>
+  <div class="dlg-foot">
+    <span class="muted small" id="brief-status"></span>
+    <button class="btn" id="btn-copy">Copy for WhatsApp</button>
+    <button class="btn btn-primary" id="btn-print">Print / Save as PDF</button>
+  </div>
+</dialog>
+
+<dialog id="dlg-upload" class="dlg dlg-wide">
+  <div class="dlg-head"><h2>Upload a new MPPCB report</h2><button class="x" data-close aria-label="Close">✕</button></div>
+  <div id="upload-body"></div>
+</dialog>
+
+<div id="toast" class="toast" role="status" hidden></div>
+<div id="print-area" class="print-only"></div>
+
+<script src="data/env.js" onerror="window.ENV={}"></script>
+<script src="vendor/maplibre/maplibre-gl.js"></script>
+<script src="js/config.js"></script>
+<script src="data/bundled.js"></script>
+<script src="js/i18n.js"></script>
+<script src="js/scoring.js"></script>
+<script src="js/alerts.js"></script>
+<script src="js/pdfparse.js"></script>
+<script src="js/store.js"></script>
+<script src="js/charts.js"></script>
+<script src="js/basemap.js"></script>
+<script src="js/brief.js"></script>
+<script src="js/app.js"></script>
+<script src="js/upload.js"></script>
+</body>
+</html>

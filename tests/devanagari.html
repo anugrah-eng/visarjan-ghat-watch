@@ -1,0 +1,11 @@
+<!doctype html>
+<!-- Checks how MapLibre symbol layers render Devanagari compared with HTML labels. Open via the local server. -->
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="../site/vendor/maplibre/maplibre-gl.css"><link rel="stylesheet" href="../site/fonts/fonts.css">
+<style>body{margin:0;font-family:Mukta,sans-serif}#map{position:absolute;inset:0}.lbl{font:600 22px Mukta,sans-serif;background:#fff;padding:2px 8px;border-radius:4px;border:2px solid #7c3aed}</style></head>
+<body><div id="map"></div><script src="../site/vendor/maplibre/maplibre-gl.js"></script><script>
+const words=["मध्य प्रदेश","नर्मदा","क्षिप्रा","बड़ा तालाब"];
+const map=new maplibregl.Map({container:"map",center:[77.4,23.25],zoom:9,style:{version:8,glyphs:"https://tiles.openfreemap.org/fonts/{fontstack}/{range}.pbf",
+ sources:{p:{type:"geojson",data:{type:"FeatureCollection",features:words.map((w,i)=>({type:"Feature",properties:{name:w},geometry:{type:"Point",coordinates:[77.1,23.55-i*0.17]}}))}}},
+ layers:[{id:"bg",type:"background",paint:{"background-color":"#eef"}},{id:"t",type:"symbol",source:"p",layout:{"text-field":["get","name"],"text-font":["Noto Sans Regular"],"text-size":26},paint:{"text-color":"#c00"}}]}});
+words.forEach((w,i)=>{const e=document.createElement("div");e.className="lbl";e.textContent=w;new maplibregl.Marker({element:e}).setLngLat([77.7,23.55-i*0.17]).addTo(map);});
+</script></body></html>
