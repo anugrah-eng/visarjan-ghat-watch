@@ -423,3 +423,18 @@ The brief and the 3-step upload modal are unchanged from v1 (Drop → Review →
 - **False reassurance:** "Normal" without coliform data. Mitigation: label "within tested limits" and an always-visible limitation.
 - **Approximate dates:** the stale logic depends on round dates that the CSV lacks. Mitigation: cited `roundDates` table, "approx." label.
 - **Skills:** the `frontend-design` skill is installed on disk but was not listed as active in this session. Enable it, or confirm its path, before the landing-page design starts.
+
+---
+
+## v1.1 redesign (11 Oct 2026, afternoon)
+Added at the user's request:
+- a landing page with a satellite and terrain flyover
+- satellite as the default basemap, with 3D terrain (`raster-dem-source`, exaggeration 0.5)
+- Hindi and English across the whole UI (`site/js/i18n.js`), with Devanagari place names on the map as HTML labels
+- light and dark themes
+- a rules-based alert engine with bilingual action plans and a 90-day "Data outdated" state
+- per-ghat trend charts with the limit drawn
+- a cross-ghat comparison
+- a placeholder "Statewide" button (v2)
+
+The original risk ranking stays as "pattern over all seasons". See README → How the alerts work and Design decisions.

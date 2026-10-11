@@ -60,3 +60,13 @@ The scoring code reproduces the organisers' figures exactly: **42 of 116** DO re
 
 ## Parsing new reports
 `site/js/pdfparse.js` is a browser port of the organisers' `tools/parse_visarjan.py`. It uses pdf.js text coordinates instead of pdftotext character columns. On the three published reports it reproduces every one of the 1,524 checked rows (value, flag, phase and page); see `site/js/pdfparse.test.js`. Site names are matched first against every spelling seen in 2023–25, then by keyword (e.g. "khatlapura"). Any other name containing "Bhopal" is shown to the user to map or skip, and is never guessed.
+
+## Alert engine (v1.1)
+Separate from the ranking above, `site/js/alerts.js` gives every ghat an **alert level from its latest tested season**:
+Critical, Warning, Advisory, Meets bathing limits, or No test data. The thresholds are in `site/js/config.js` (`alerts.rules`), each tagged with its source: CPCB class B, CPCB class C/D, or *team-defined* where CPCB sets no tier. The worst rule broken sets the level. Each trigger records the parameter, phase, value, amount over the limit and report page.
+
+**Outdated data:** the reports print no sampling dates, so dates come from the festival day (`alerts.festivalDates`; "pre" is the day before and "after" a week later) and are shown as approximate. A season older than `alerts.staleDays` (90 days) shows **Data outdated** next to the last result and adds "send a testing team" as the first action. It never reads as safe.
+
+**Missing data:** a missing DO, BOD or pH adds a testing action. BDL counts as tested and low. Faecal coliform has CPCB thresholds configured (500 / 2,500 MPN/100 ml) but is not in the reports, so it is never scored.
+
+Tests: `site/js/alerts.test.js` covers every level, the boundaries (exactly at a limit does not trigger it), missing parameters, BDL, stale data and its exact boundary, choosing the latest season, and a real-data check (Bairagarh, Ganesh 2025, DO 0 gives Critical).
