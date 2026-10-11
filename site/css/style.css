@@ -20,11 +20,11 @@
   --line: #263a46; --line-2: #1d2f3a; --accent: #7fb2ec; --accent-ink: #0b151c; --accent-soft: #1b3550;
   --nav-bg: #08121a; --nav-ink: #d5e1e9; --nav-muted: #7f94a3; --nav-active: #1f4c7c;
   --focus: #9cc4f2; --shadow: 0 1px 2px rgba(0, 0, 0, .4), 0 6px 18px rgba(0, 0, 0, .35);
-  --crit: #e0457f; --crit-on: #ffffff; --crit-text: #ff8fb6; --crit-soft: #3a1626;
+  --crit: #e0457f; --crit-on: #1a0610; --crit-text: #ff8fb6; --crit-soft: #3a1626;
   --warn: #f07a2a; --warn-on: #1a1206; --warn-text: #ffab70; --warn-soft: #3a2414;
   --adv: #e2c24a; --adv-on: #1d1803; --adv-text: #ecd377; --adv-soft: #352e12;
   --ok: #19b3a2; --ok-on: #04201d; --ok-chip: #19b3a2; --ok-text: #5fd6c8; --ok-soft: #10302d;
-  --data: #9b6bf2; --data-on: #ffffff; --data-text: #c4a7fa; --data-soft: #2a1d48;
+  --data: #9b6bf2; --data-on: #12082a; --data-text: #c4a7fa; --data-soft: #2a1d48;
   --chart-line: #7fb2ec; --chart-grid: #22343f; --chart-tick: #8fa1aa; --chart-limit: #ff8fb6; --chart-band: rgba(25, 179, 162, .14);
   --map-label-bg: rgba(10, 20, 28, .9); --map-label-ink: #f1f6f8;
   color-scheme: dark;
