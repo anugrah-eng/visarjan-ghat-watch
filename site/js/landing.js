@@ -164,6 +164,9 @@
   document.addEventListener("keydown", (e) => { if (e.key === "Escape") closePeek(); });
   document.addEventListener("click", (e) => { if (!e.target.closest(".pin, .maplibregl-popup, #gauge-list")) closePeek(); });
   render();
-  if (document.readyState === "complete") (window.requestIdleCallback || setTimeout)(loadMap);
-  else window.addEventListener("load", () => (window.requestIdleCallback || setTimeout)(loadMap));
+  // Load the map after the intro, so the intro never stutters while map tiles decode.
+  const whenReady = () => (window.requestIdleCallback || setTimeout)(loadMap);
+  if (window.__introDone || !document.getElementById("intro")) {
+    if (document.readyState === "complete") whenReady(); else window.addEventListener("load", whenReady);
+  } else document.addEventListener("jd-intro-done", whenReady, { once: true });
 })();

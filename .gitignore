@@ -3,6 +3,20 @@ node_modules/
 *.log
 __pycache__/
 site/data/env.js
-# Local-only working material: video frames, and raw images and OCR extracted from the MPPCB reports
+
+# Local-only working material: video frames, and the raw images and OCR extracted from the MPPCB reports
 .reference/
 extracted-images/
+
+# Images: ignored everywhere by default, so working files never crowd the tree...
+*.png
+*.jpg
+*.jpeg
+*.PNG
+*.JPG
+*.JPEG
+# ...except the ones the deployed site and the README need
+!site/img/**/*.png
+!site/img/**/*.jpg
+!site/img/**/*.jpeg
+!docs/screenshot.png

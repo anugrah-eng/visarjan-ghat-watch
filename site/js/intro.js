@@ -1,35 +1,30 @@
-// Plays the opening animation once per session. The page loads underneath; any failure just removes the overlay.
+// Plays the opening video once per session, then fades into the dashboard. Skip button, click or Escape ends it.
+// If the video can't play (blocked autoplay, missing codec, slow network) the dashboard simply shows.
 (function () {
-  var el = document.getElementById("intro");
-  if (!el) return;
-  var seen = false; try { seen = sessionStorage.getItem("jd-intro") === "1"; } catch (e) {}
-  var reduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  if (seen) { el.remove(); return; }
-  try { sessionStorage.setItem("jd-intro", "1"); } catch (e) {}
+  var root = document.documentElement, box = document.getElementById("intro");
+  if (!box) return;
+  if (root.getAttribute("data-intro") !== "1") { box.remove(); return; }
+  var v = box.querySelector("video"), skip = box.querySelector(".intro-skip"), done = false;
   var lang = "en"; try { lang = localStorage.getItem("vgw-lang") || "en"; } catch (e) {}
-  var txt = { en: ["JalDrishti", "Water quality at Bhopal's visarjan ghats", "Skip intro"], hi: ["जलदृष्टि", "भोपाल के विसर्जन घाटों की जल गुणवत्ता", "परिचय छोड़ें"] }[lang] || [];
-  el.querySelector(".intro-name b").textContent = txt[0];
-  el.querySelector(".intro-name span").textContent = txt[1];
-  el.querySelector(".intro-skip").textContent = txt[2];
-  var done = false;
-  function finish(fly) {
+  skip.textContent = lang === "hi" ? "परिचय छोड़ें" : "Skip intro";
+  box.setAttribute("aria-label", lang === "hi" ? "आरंभिक दृश्य: जलदृष्टि" : "Opening sequence: JalDrishti");
+  function finish() {
     if (done) return; done = true;
-    var drop = el.querySelector(".intro-drop"), target = document.querySelector(".l-brand .brand-logo");
-    if (fly && target && !reduced) { // hand off: the drop settles into the header logo
-      var a = drop.getBoundingClientRect(), b = target.getBoundingClientRect(), c = drop.cloneNode(true);
-      c.className = "intro-fly"; c.style.cssText = "left:" + a.left + "px;top:" + a.top + "px;width:" + a.width + "px;height:" + a.height + "px;opacity:1";
-      document.body.appendChild(c); drop.style.visibility = "hidden";
-      requestAnimationFrame(function () { requestAnimationFrame(function () {
-        c.style.left = b.left + "px"; c.style.top = b.top + "px"; c.style.width = b.width + "px"; c.style.height = b.height + "px"; }); });
-      setTimeout(function () { c.remove(); }, 700);
-    }
-    el.classList.add("out");
-    setTimeout(function () { el.remove(); }, 480);
-    document.removeEventListener("keydown", onKey);
+    try { sessionStorage.setItem("vgw.intro", "seen"); } catch (e) {}
+    box.classList.add("leaving");
+    setTimeout(function () {
+      root.removeAttribute("data-intro"); box.remove();
+      try { v.pause(); v.removeAttribute("src"); v.load(); } catch (e) {}
+      window.dispatchEvent(new Event("resize")); // let the map size itself now the page is visible
+    }, 700);
   }
-  function onKey() { finish(false); }
-  el.addEventListener("click", function () { finish(false); });
-  document.addEventListener("keydown", onKey);
-  setTimeout(function () { finish(true); }, reduced ? 600 : 2600);
-  setTimeout(function () { if (document.getElementById("intro")) el.remove(); }, 5000); // failsafe
+  skip.addEventListener("click", function (e) { e.stopPropagation(); finish(); });
+  box.addEventListener("click", finish);
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape" || e.key === "Enter" || e.key === " ") finish(); });
+  v.addEventListener("ended", finish);
+  v.addEventListener("error", finish);
+  var p = v.play(); if (p && p.catch) p.catch(function () { finish(); });
+  setTimeout(function () { if (!done && v.currentTime === 0) finish(); }, 4500); // never stall on a blocked source
+  setTimeout(finish, 14000); // hard cap
+  skip.focus({ preventScroll: true });
 })();

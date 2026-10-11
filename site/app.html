@@ -13,74 +13,93 @@
   <meta property="og:title" content="JalDrishti · Bhopal Water Quality Management Platform">
   <meta property="og:image" content="img/brand/og-image.jpg">
   <script src="js/theme.js"></script>
+  <script src="js/intro-gate.js"></script>
   <link rel="preload" href="fonts/mukta-latin-400.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="fonts/fonts.css">
   <link rel="stylesheet" href="vendor/maplibre/maplibre-gl.css">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/report-sidebar.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+  <link rel="stylesheet" href="css/intro.css">
   <link rel="stylesheet" href="css/print.css" media="print">
 </head>
 <body>
+<div class="intro" id="intro" role="dialog" aria-modal="true" aria-label="Opening sequence: JalDrishti">
+  <video muted playsinline preload="auto" poster="img/brand/intro-poster.jpg" aria-hidden="true">
+    <source src="media/jaldrishti-intro.webm" type="video/webm">
+    <source src="media/jaldrishti-intro.mp4" type="video/mp4">
+  </video>
+  <button type="button" class="intro-skip">Skip intro</button>
+</div>
+<script src="js/intro.js"></script>
 <div class="shell">
   <nav class="nav" id="nav" aria-label="Main">
     <a class="brand" href="index.html">
-      <img class="brand-logo" src="img/brand/logo-128.png" width="40" height="40" alt="" data-alt="logoAlt">
+      <img class="brand-logo" src="img/brand/logo-128.png" width="44" height="44" alt="" data-alt="logoAlt">
       <div><b data-t="appName"></b><span data-t="appSub"></span></div>
     </a>
-    <a class="item" href="#overview" data-view="overview"><span class="ico" aria-hidden="true">⌂</span><span data-t="navOverview"></span></a>
-    <a class="item" href="#ghat" data-view="ghat"><span class="ico" aria-hidden="true">◉</span><span data-t="navGhat"></span></a>
-    <a class="item" href="#compare" data-view="compare"><span class="ico" aria-hidden="true">≡</span><span data-t="navCompare"></span></a>
-    <a class="item" href="#alerts" data-view="alerts"><span class="ico" aria-hidden="true">!</span><span data-t="navAlerts"></span></a>
-    <a class="item" href="#report" data-view="report"><span class="ico" aria-hidden="true">▤</span><span data-t="navReport"></span></a>
-    <a class="item" href="#about" data-view="about"><span class="ico" aria-hidden="true">i</span><span data-t="navAbout"></span></a>
-    <div class="foot" id="nav-foot"></div>
+    <a class="item" href="#overview" data-view="overview"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11l9-8 9 8v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg><span data-t="navDashboard"></span></a>
+    <a class="item" href="#map" data-view="map"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4 3 6v14l6-2 6 2 6-2V4l-6 2-6-2zM9 4v14M15 6v14"/></svg><span data-t="navMap"></span></a>
+    <a class="item" href="#compare" data-view="compare"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3s7 7.5 7 12a7 7 0 0 1-14 0c0-4.5 7-12 7-12z"/></svg><span data-t="navWater"></span></a>
+    <a class="item" href="#ghat" data-view="ghat"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s7-6.3 7-12a7 7 0 0 0-14 0c0 5.7 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/></svg><span data-t="navSites"></span></a>
+    <a class="item" href="#report" data-view="report"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3H6a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V8z"/><path d="M14 3v5h5M8 13h8M8 17h6"/></svg><span data-t="navReports"></span></a>
+    <a class="item" href="#alerts" data-view="alerts"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 16V11a6 6 0 0 1 12 0v5l2 2H4zM10 20a2 2 0 0 0 4 0"/></svg><span data-t="navAlerts"></span></a>
+    <a class="item" href="#about" data-view="about"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.5"/></svg><span data-t="navAbout"></span></a>
+    <div class="nav-art" aria-hidden="true">
+      <svg viewBox="0 0 200 90" class="skyline"><path d="M0 90V70h8V58h4v-8h3v8h4v12h10V52l6-10 6 10v18h6V62h3V40l3-8 3 8v22h3v8h12V56c0-8 8-14 8-14s8 6 8 14v14h8V48h2v-8h2v8h2v22h10V60l5-8 5 8v10h8V36l3-10 3 10v34h6V58h12v12h10V54h3v-6h4v6h3v16h12v20z"/></svg>
+      <div class="nav-motto"><svg viewBox="0 0 24 24" class="leaf"><path d="M5 19C5 9 12 4 20 4c0 9-6 15-15 15zM5 19l8-8"/></svg><span data-t="cleanWater"></span><span data-t="healthyCity"></span></div>
+    </div>
   </nav>
 
   <div class="main">
     <header class="topbar">
-      <button class="btn nav-toggle" id="nav-toggle" aria-label="Menu" aria-controls="nav">☰</button>
-      <div>
+      <button class="btn nav-toggle" id="nav-toggle" aria-label="Menu" aria-controls="nav"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button>
+      <div class="tb-title">
         <h1 data-t="platformTitle"></h1>
         <div class="tag" data-t="platformSub"></div>
       </div>
       <div class="spacer"></div>
+      <div class="pill date-pill"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg><span id="data-range"></span></div>
       <div class="countdown" id="countdown"></div>
-      <div class="seg" role="group" aria-label="Coverage">
-        <button aria-pressed="true" data-t="bhopal"></button>
-        <button id="btn-statewide" aria-pressed="false" data-t="statewide"></button>
+      <button id="btn-upload" class="btn btn-primary btn-upload"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 16V4M7 9l5-5 5 5M4 16v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3"/></svg><span data-t="uploadLatest"></span></button>
+      <button id="btn-report" class="btn btn-icon" data-report="" data-t-title="rsOpen" aria-label="Download report"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v12M7 11l5 5 5-5M4 16v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3"/></svg></button>
+      <button id="btn-brief" class="btn btn-icon" data-t-title="brief" aria-label="Officer brief"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v11H8l-4 4z"/><path d="M8 9h8M8 12h5"/></svg></button>
+      <div class="pill theme-pill" role="group" aria-label="Theme">
+        <button data-theme-btn="light" aria-label="Light theme"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></button>
+        <button data-theme-btn="dark" aria-label="Dark theme"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></svg></button>
       </div>
-      <button id="btn-upload" class="btn">⬆ <span data-t="upload"></span></button>
-      <button id="btn-report" class="btn" data-report="">⬇ <span data-t="rsOpen"></span></button>
-      <button id="btn-brief" class="btn btn-primary" data-t="brief"></button>
-      <div class="seg" role="group" aria-label="Theme">
-        <button data-theme-btn="light" aria-label="Light theme">☀</button>
-        <button data-theme-btn="dark" aria-label="Dark theme">☾</button>
-      </div>
-      <div class="seg" role="group" aria-label="Language / भाषा">
-        <button data-lang-btn="en" lang="en">EN</button>
-        <button data-lang-btn="hi" lang="hi">हिंदी</button>
+      <div class="pill lang-pill" role="group" aria-label="Language">
+        <button data-lang-btn="en" lang="en">EN</button><span aria-hidden="true">|</span><button data-lang-btn="hi" lang="hi">हिंदी</button>
       </div>
     </header>
 
     <section class="view" id="view-overview" aria-labelledby="h-overview">
-      <h2 class="sr-only" id="h-overview" data-t="navOverview"></h2>
-      <div class="grid ov-top">
-        <div class="card map-card">
+      <h2 class="sr-only" id="h-overview" data-t="navDashboard"></h2>
+      <div class="ov2-top">
+        <div class="card map-card" id="map-card">
           <div id="map" role="region" aria-label="Map of Bhopal immersion ghats"></div>
-          <div class="map-ctrl">
-            <div class="seg" role="group" aria-label="Basemap">
-              <button data-base="satellite" data-t="satellite"></button>
-              <button data-base="streets" data-t="streets"></button>
+          <div class="map-tl">
+            <div class="seg2" role="group" aria-label="Coverage">
+              <button aria-pressed="true"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s7-6.3 7-12a7 7 0 0 0-14 0c0 5.7 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/></svg><span data-t="bhopal"></span></button>
+              <button id="btn-statewide" aria-pressed="false"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4 3 6v14l6-2 6 2 6-2V4l-6 2-6-2zM9 4v14M15 6v14"/></svg><span data-t="region"></span></button>
             </div>
+          </div>
+          <div class="map-tr">
+            <button class="mbtn" id="btn-full" aria-label="Full screen"><svg class="i" viewBox="0 0 24 24"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg></button>
+            <button class="mbtn" id="btn-layer" aria-label="Satellite or streets"><svg class="i" viewBox="0 0 24 24"><path d="M12 3 2 8l10 5 10-5zM2 13l10 5 10-5M2 17l10 5 10-5"/></svg></button>
+          </div>
+          <div class="map-br">
+            <div class="mstack"><button class="mbtn" id="btn-zin" aria-label="Zoom in">+</button><button class="mbtn" id="btn-zout" aria-label="Zoom out">&minus;</button></div>
+            <button class="mbtn" id="btn-home" aria-label="Show all ghats"><svg class="i" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><circle cx="12" cy="12" r="8"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg></button>
           </div>
           <div class="map-note" id="map-note"></div>
         </div>
-        <div class="card" id="ghat-panel" aria-live="polite"></div>
+        <div class="card gp2" id="ghat-panel" aria-live="polite"></div>
       </div>
-      <div class="grid ov-bottom">
-        <div class="card"><h2 data-t="sites"></h2><div id="sites-table"></div><div class="meta-line" id="ov-source"></div></div>
-        <div class="card"><h2 data-t="statusCounts"></h2><div id="counts"></div></div>
-        <div class="card"><h2 data-t="recentAlerts"></h2><ul class="alerts" id="alert-list"></ul></div>
+      <div class="ov2-bottom">
+        <div class="card"><h2 data-t="sitesIn"></h2><div id="sites-table"></div><div class="meta-line" id="ov-source"></div></div>
+        <div class="card"><h2 data-t="statusBreakdown"></h2><div id="counts"></div></div>
+        <div class="card"><div class="card-h"><h2 data-t="recentAlerts"></h2><a href="#alerts" data-t="viewAll"></a></div><ul class="alerts2" id="alert-list"></ul></div>
       </div>
     </section>
 
@@ -122,6 +141,7 @@
 <script src="vendor/maplibre/maplibre-gl.js"></script>
 <script src="js/config.js"></script>
 <script src="data/bundled.js"></script>
+<script src="data/ghat-images.js"></script>
 <script src="js/i18n.js"></script>
 <script src="js/scoring.js"></script>
 <script src="js/alerts.js"></script>

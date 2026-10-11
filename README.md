@@ -1,10 +1,24 @@
-# Visarjan Ghat Watch
+# JalDrishti (जलदृष्टि) · Visarjan Ghat Watch
 
 Track: 2 Visarjan Ghat Watch
 Team: [TEAM NAME] · [member 1], [member 2], [member 3], [member 4], [member 5]
 
+**Live:** https://anugrah-eng.github.io/visarjan-ghat-watch/
+
+JalDrishti ("water sight") is the Bhopal Water Quality Management Platform. Its first job is the city's visarjan ghats.
+
 ## The user
 The Bhopal Municipal Corporation officer who plans Durga visarjan at the ghats. They use it in the days before 20 October 2026 to decide where to send aeration, cleaning and water-testing teams.
+
+## Design philosophy
+Six ideas shaped every decision below.
+
+1. **One officer, one decision.** Every screen answers the same question: *where do I send teams before visarjan, and why?* The alert, its triggers and the actions sit together, and the countdown to 20 October stays at the top.
+2. **Rules you can check, not a black box.** Alerts come from published CPCB Class B limits written into a short rules table. There is no model and no score that can't be explained. Each alert names the reading, how far it is over the limit, and the MPPCB report page it came from. Where we had to choose (tiers above the CPCB limits), the app says *team-defined*.
+3. **Say what the data can't tell you.** Missing tests are shown as "not tested", never left blank and never treated as safe. Data older than 90 days says **Data outdated**. Untested parameters such as coliform and temperature are left out of the reports with a note explaining why. There are no forecasts and no health claims.
+4. **Built for the people who use it.** Hindi and English on every screen and in every report. A brief that pastes straight into WhatsApp. Pages that work on a 390 px phone and on 2G. Colour is never the only signal, contrast meets WCAG AA in both themes, and motion stops when the system asks it to.
+5. **No developer needed next year.** BMC uploads the new MPPCB PDF in the browser, checks what was found, and everything updates. There is no server, no account, no build step and no framework, so the site is just files and runs from GitHub Pages or a laptop.
+6. **Calm, official and recognisable.** The JalDrishti water-drop mark and a navy-and-blue civic palette make it read as a city platform, not a hackathon demo. The intro plays once per session, can be skipped, and hands off to the header logo.
 
 ## What it does
 It turns three years of MPPCB immersion water tests (1,524 readings, 7 Bhopal ghats, 2023–25) into a **rules-based alert** for every ghat: Critical, Warning, Advisory or Meets bathing limits. Each alert lists which readings set it off, by how much, against which CPCB limit, and on which report page, along with recommended actions in English and Hindi. A ghat whose latest test is older than 90 days also shows **"Data outdated"**, never "safe".
@@ -16,6 +30,7 @@ The dashboard has:
 - the CPCB report
 - CSV exports
 - an officer brief to copy into WhatsApp or print
+- a downloadable report (PDF or CSV, Hindi or English) for one ghat or all 7
 
 Every screen works in Hindi or English and in light or dark mode. Next year, BMC uploads the new MPPCB report PDF in the browser and everything updates; no developer is needed.
 
@@ -38,11 +53,13 @@ To rehearse the yearly update, open http://localhost:8765/site/app.html?until=20
 
 **For developers:**
 - `npm install`, then `npm test` (alert engine, scoring and PDF-parser tests) and `npm run e2e` (upload flow in Chrome; needs the step 3 server running).
+- `node tests/report-sidebar.e2e.js` checks the report sidebar: it opens as a dialog, generates a Hindi report for all 7 ghats, and returns focus on Escape. It needs the step 3 server running.
 - `node tests/screens.js` takes screenshots of every view in both themes, both languages, and desktop and mobile widths.
 - After editing anything in `data/`, run `python pipeline/build_data.py`.
 - There is no build step and no framework: plain HTML, CSS and JavaScript.
 
 ## What's on screen
+- **Intro:** a short animation of the JalDrishti drop settling on the horizon, then moving into the header logo. It plays once per browser session. Any click or key skips it, it is shortened when reduced motion is on, and if anything fails the overlay is simply removed.
 - **Landing page (`site/index.html`):** a slow satellite and terrain flyover across the 7 ghats, with a live list of each ghat's latest alert.
   - The map library loads only after the page has appeared, and not at all with data saver on or on 2G.
   - If the system asks for reduced motion, the flyover doesn't run, and there is always a pause button.
@@ -60,6 +77,10 @@ To rehearse the yearly update, open http://localhost:8765/site/app.html?until=20
 - **CPCB report:** breaches out of readings actually tested, overall and per ghat.
 - **About the data:** what the data doesn't tell you, the alert rules table, and sources and credits.
 - **Officer brief:** English, हिंदी or both, with **Copy for WhatsApp** and **Print / Save as PDF**.
+- **Download report (sidebar):** opens from the top bar or from any ghat panel.
+  - Choose a ghat, monitoring year, festival and sampling phase to see that season's real readings next to their limits, with breaches marked. A season with no MPPCB table says "not tested".
+  - Generate a report for this ghat or all 7, in English or Hindi, as PDF (through the print dialog) or CSV.
+  - It is a proper dialog: focus stays inside, Escape closes it, and focus goes back to the button that opened it.
 - **Upload report:** drop an MPPCB PDF or a CSV.
   1. The browser reads every table and matches the 7 ghats.
   2. A review screen shows what was found and what is missing, plus any unrecognised Bhopal site names for you to map or skip.
@@ -87,6 +108,7 @@ The thresholds are all in `site/js/config.js` (`alerts`). They are based on the 
 The **ranking and pattern** (weighted breaches across all seasons) is described in [docs/methodology.md](docs/methodology.md). It reproduces the problem statement's figures exactly: 42 of 116 DO readings below 5, and 100 of 112 BOD readings above 3. The product spec is in [docs/PRD.md](docs/PRD.md).
 
 ## Design decisions
+- **Brand:** the circular JalDrishti logo is cut from a water-drop image (`site/img/brand/`), with favicons, app icons, a web manifest and a social preview image. The intro is plain CSS and JavaScript (`intro.css`, `intro.js`), not a video, so it costs only a few kilobytes.
 - **Map tiles:**
   - Satellite: **EOX Sentinel-2 cloudless 2023**. It needs no key; its licence (CC BY-NC-SA 4.0) allows non-commercial public use; resolution is 10 m.
   - Terrain: **AWS Terrain Tiles** (Terrarium encoding), as `raster-dem-source` with terrain `{"source": "raster-dem-source", "exaggeration": 0.5}`.
@@ -96,7 +118,7 @@ The **ranking and pattern** (weighted breaches across all seasons) is described 
 - **Hindi on the map:** MapLibre draws text from pre-made glyphs and does not join Devanagari letters properly. `tests/devanagari.html` shows "प्रदेश" and "क्षिप्रा" breaking. So ghat names and key places (भोपाल, बड़ा तालाब, छोटा तालाब) are **HTML labels**, which the browser renders correctly. Street-map labels switch with `setLayoutProperty` but stay in English in Hindi mode. The trade-off is that only the places we label get Hindi names on the map. `HINDI_GLYPHS` in `basemap.js` turns Hindi street labels back on once MapLibre supports this.
 - **Text:** every ghat name, alert, action and UI label is in `site/js/i18n.js`. The choice of language is remembered.
 - **Fonts:** **Mukta** (SIL OFL), self-hosted. Its Devanagari files load only when Hindi text is on screen.
-- **Themes:** colour variables in `style.css`. The page follows the system setting on first visit, remembers the choice, and sets the theme before the first paint, so there is no flash. Alert colours were checked with a palette validator and for WCAG AA contrast in both themes. Colour is never the only signal: every status also has an icon and a label.
+- **Themes:** colour variables in `style.css`, in a navy-and-blue palette based on a reference civic dashboard. The page follows the system setting on first visit, remembers the choice, and sets the theme before the first paint, so there is no flash. Alert colours were checked with a palette validator and for WCAG AA contrast in both themes. Colour is never the only signal: every status also has an icon and a label.
 - **Charts:** hand-written SVG with no chart library. Each chart type answers one question: a line for trends, a dot chart for comparing ghats, counts and a stacked bar for status (no donut), and tables for compliance. Every chart has a table view.
 
 ## What works
@@ -129,7 +151,7 @@ All from the organisers' data pack (https://github.com/Laaaaksh/bhopal-impact-la
 
 Extra data and services:
 - `data/ghats.geojson`: approximate ghat coordinates placed by the team (to be verified).
-- `site/img/ghats/`: ghat photos and water-test table images cut from the MPPCB reports above.
+- `site/img/ghats/`: ghat photos and water-test table images cut from the MPPCB reports above. `site/img/ghats/by-site/` keeps one image per ghat for the landing-page cards. Only Bairagarh has a real photo; the others show their newest test table.
 - Satellite: Sentinel-2 cloudless 2023 by EOX IT Services GmbH (https://s2maps.eu), contains modified Copernicus Sentinel data, CC BY-NC-SA 4.0.
 - Terrain: AWS Terrain Tiles / Mapzen (https://github.com/tilezen/joerd/blob/master/docs/attribution.md).
 - Streets: © OpenStreetMap contributors, via OpenFreeMap (https://openfreemap.org).

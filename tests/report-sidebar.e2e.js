@@ -10,7 +10,7 @@ const check = (ok, m) => { console.log(`${ok ? "PASS" : "FAIL"} ${m}`); if (!ok)
   for (const [theme, lang, w, h] of [["light", "en", 1440, 900], ["dark", "hi", 390, 844]]) {
     const p = await b.newPage(); await p.setViewport({ width: w, height: h });
     p.on("pageerror", (e) => errors.push(e.message));
-    await p.evaluateOnNewDocument((t, l) => { localStorage.setItem("vgw-theme", t); localStorage.setItem("vgw-lang", l); }, theme, lang);
+    await p.evaluateOnNewDocument((t, l) => { sessionStorage.setItem("vgw.intro", "seen"); localStorage.setItem("vgw-theme", t); localStorage.setItem("vgw-lang", l); }, theme, lang);
     await p.goto("http://localhost:8765/site/app.html", { waitUntil: "networkidle2" });
     await new Promise((r) => setTimeout(r, 1200));
     await p.click("#btn-report"); await new Promise((r) => setTimeout(r, 400));

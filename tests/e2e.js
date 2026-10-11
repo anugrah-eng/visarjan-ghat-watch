@@ -17,6 +17,7 @@ const check = (ok, msg) => { console.log(`${ok ? "PASS" : "FAIL"} ${msg}`); if (
   const browser = await puppeteer.launch({ executablePath: CHROME, headless: true,
     args: ["--use-angle=swiftshader", "--enable-unsafe-swiftshader", "--window-size=1440,900"], defaultViewport: { width: 1440, height: 900 } });
   const page = await browser.newPage();
+  await page.evaluateOnNewDocument(() => sessionStorage.setItem("vgw.intro", "seen")); // the opening video is tested separately
   const errors = [];
   page.on("pageerror", (e) => errors.push(e.message));
   page.on("console", (m) => { if (m.type() === "error" && !/tile|Failed to load resource/i.test(m.text())) errors.push(m.text()); });
