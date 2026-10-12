@@ -1,15 +1,14 @@
 /* Opening sequence (the team's JalDrishti intro video): pearl on the horizon -> drop falls -> ripples -> dashboard.
-   Shown once per session on entering the dashboard; skipped for reduced motion and data saver. */
+   Plays in full whenever the site is opened (once per session); it has no skip control. */
 .intro { display: none; }
 html[data-intro="1"] body { overflow: hidden; }
-html[data-intro="1"] .intro { display: block; position: fixed; inset: 0; z-index: 200; background: #05080f; cursor: pointer; transition: opacity .7s ease; }
+html[data-intro="1"] .intro { display: block; position: fixed; inset: 0; z-index: 200; background: #05080f; transition: opacity .7s ease; }
 .intro video { width: 100%; height: 100%; object-fit: cover; display: block; background: #05080f; }
 .intro.leaving { opacity: 0; pointer-events: none; }
-.intro-skip { position: absolute; right: clamp(14px, 3vw, 32px); bottom: calc(clamp(14px, 4vh, 36px) + env(safe-area-inset-bottom, 0px)); min-height: 44px; padding: 8px 18px;
-  border-radius: 999px; border: 1px solid rgba(255, 255, 255, .55); background: rgba(5, 8, 15, .55); color: #fff; font: inherit; font-size: 14.5px; font-weight: 600; cursor: pointer; backdrop-filter: blur(4px); }
-.intro-skip:hover { background: rgba(255, 255, 255, .15); }
-.intro-skip:focus-visible { outline: 3px solid #8ab4ff; outline-offset: 3px; }
-@media (prefers-reduced-motion: reduce) { .intro { transition: none; } }
+/* Reduced motion: the still opening frame instead of the moving video */
+html[data-intro-still="1"] .intro video { display: none; }
+html[data-intro-still="1"] .intro { background: #05080f url("../img/brand/intro-poster.jpg") center / cover no-repeat; }
+@media (prefers-reduced-motion: reduce) { .intro, html.intro-out .shell { transition: none; } }
 
 /* Hand-off: the dashboard waits behind the video, then fades up as the video fades away. */
 html[data-intro="1"] .shell { opacity: 0; transform: scale(.985); }
