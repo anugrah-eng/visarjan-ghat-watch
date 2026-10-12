@@ -18,6 +18,7 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
   const start = Date.now();
   await p.waitForFunction(() => !document.getElementById("intro"), { timeout: 15000 });
   check(true, `dashboard shows right after the video ends (${((Date.now() - start) / 1000 + 3.3).toFixed(1)}s after opening)`);
+  await sleep(300);
   check(await p.evaluate(() => getComputedStyle(document.querySelector(".shell")).opacity === "1"), "dashboard is fully visible");
   await p.reload({ waitUntil: "domcontentloaded" });
   check(await p.evaluate(() => !document.getElementById("intro")), "does not replay on refresh within the same session");
