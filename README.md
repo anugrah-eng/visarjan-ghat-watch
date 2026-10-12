@@ -36,29 +36,8 @@ Every screen works in Hindi or English and in light or dark mode. Next year, BMC
 
 ![screenshot](docs/screenshot.png)
 
-## Demo
-[Link to the 2-minute recording]
 
-## How to run it (4 steps)
-1. Install Python 3 (any recent version). Nothing else is needed to *use* the tool.
-2. `git clone <this repo>` and `cd visarjan-ghat-watch`
-3. `python -m http.server 8765`
-4. Open http://localhost:8765/ for the dashboard (the repo root redirects to `site/app.html`). The flyover landing page is at http://localhost:8765/site/.
-
-**Uploading a PDF needs step 3**, because browsers block the PDF reader on `file://`.
-
-To rehearse the yearly update, open http://localhost:8765/site/app.html?until=2024, which hides 2025. Click **Upload Latest Report** and drop `resources/Ganesh_and_Durga_visarjan_report-2025.pdf`.
-
-**Optional sharper satellite imagery:** copy `.env.example` to `.env`, set `MAPTILER_KEY`, and run `python pipeline/build_data.py`. This writes the gitignored `site/data/env.js`. A key used in a browser is visible to visitors, so restrict it to your domain in MapTiler.
-
-**For developers:**
-- `npm install`, then `npm test` (alert engine, scoring and PDF-parser tests) and `npm run e2e` (upload flow in Chrome; needs the step 3 server running).
-- `node tests/report-sidebar.e2e.js` checks the report sidebar: it opens as a dialog, generates a Hindi report for all 7 ghats, and returns focus on Escape. `node tests/intro.e2e.js` checks that the intro video plays on the first visit, that Skip works, that it doesn't play again in the same session, and that reduced motion turns it off. Both need the step 3 server running. The other browser tests mark the intro as already seen.
-- `node tests/screens.js` takes screenshots of every view in both themes, both languages, and desktop and mobile widths.
-- After editing anything in `data/`, run `python pipeline/build_data.py`.
-- There is no build step and no framework: plain HTML, CSS and JavaScript.
-
-## What's on screen
+## Elements, and Asset Flow
 - **Opening sequence:** the team's JalDrishti video (a pearl becomes a drop, then ripples) plays the first time the dashboard opens in a session, then fades into the dashboard.
   - Skip, click, Escape or Enter ends it.
   - It is decided in `<head>` before the first paint, so the dashboard never flashes first. It is off for reduced motion and data saver.
@@ -99,9 +78,6 @@ To rehearse the yearly update, open http://localhost:8765/site/app.html?until=20
   2. A review screen shows what was found and what is missing, plus any unrecognised Bhopal site names for you to map or skip.
   3. You confirm, and everything updates.
 - **Statewide:** a button marks where coverage of about 100 MP sites will go in v2.
-
-## How the alerts work
-The thresholds are all in `site/js/config.js` (`alerts`). They are based on the CPCB Primary Water Quality Criteria, Class B (organised outdoor bathing):
 
 | Parameter | Advisory | Warning | Critical |
 |---|---|---|---|
